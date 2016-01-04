@@ -1,40 +1,65 @@
-{% load static wagtailuserbar %}
+{% load static wagtailuserbar compress navtags %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        {# Global stylesheets #}
-        {# Local static assets such as css, images and javascrpt should be stored at [yourapp]/static/[yourapp]/... #}
-        {% compress css %}
-            {# Custom stylesheets #}
-            {# SCSS compilation relies on django compressor #}
-            <link rel="stylesheet" type="text/x-scss" href="{% static "css/main.scss" %}" />
-        {% endcompress %}
+{# Global stylesheets #}
+{# Local static assets such as css, images and javascrpt should be stored at [yourapp]/static/[yourapp]/... #}
+{% compress css %}
+{# Custom stylesheets #}
+{# SCSS compilation relies on django compressor #}
+<link rel="stylesheet" type="text/x-scss" href="{% static "css/main.scss" %}" />
+{% endcompress %}
 
-        {% block extra_css %}
-            {# Override this in templates to add extra stylesheets #}
-        {% endblock %}
-    </head>
+{% block extra_css %}
+    {# Override this in templates to add extra stylesheets #}
+{% endblock %}
+</head>
 
-    <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
+<body class="{% block body_class %}{% endblock %}">
+{% block main_header %}
+    <header id="main-header">
+        <section id="top-menu">
+            <div class="container">
+                {% block top_menu %}
+                    {% topmenu parent=site.root currentpage=self %}
+                {% endblock %}
+            </div>
+        </section> <!-- #top-menu -->
+        <section id="top-area">
+            <div class="container">
+                {% block top_area %}
 
-        {% block content %}{% endblock %}
+                {% endblock %}
+            </div>
+        </section> <!-- #top-area -->
+    </header>
+{% endblock %}
 
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
-    </body>
+<main>
+{% wagtailuserbar %}
+{% block content %}{% endblock %}
+</main>
+
+<footer>
+    {% block footer %}{% endblock %}
+</footer>
+
+{# Global javascript #}
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+{% block extra_js %}
+    {# Override this in templates to add extra javascript #}
+{% endblock %}
+</body>
 </html>

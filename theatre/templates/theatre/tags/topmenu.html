@@ -1,0 +1,8 @@
+{% load wagtail_tags %}
+<nav>
+  <ul>
+    {% for item in menuitems %}
+      <li><a href="{{ pageurl item }}">{{ item.title }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>

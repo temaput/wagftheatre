@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load wagtail_tags %}
+
+{% block extra_css %}
+  <style type="text/css" media="screen">
+#top-area, #pre-footer { background-image: url({{ page.top_image }}) };
+  </style>
+{% endblock %}
+{% block top_area %}
+
+  <h1 class="title">{{ page.title }}</h1>
+
+{% endblock %}
+
+{% block content %}
+  <section class="home-block">
+    <div class="container">
+      {{ page.description|richtext }}
+    </div>
+  </section>
+{% endblock %}
