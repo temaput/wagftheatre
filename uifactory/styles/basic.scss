@@ -1,0 +1,73 @@
+/*------------------------------------------------*/
+/*-----------------[BASIC STYLES]-----------------*/
+/*------------------------------------------------*/
+@import "variables";
+
+html { -webkit-font-smoothing: antialiased; }
+body { color: $text-color; background-color: $body-bg-color; font-weight: 300; }
+body, input, textarea { font-size: 16px; }
+
+body, input, textarea { font-family: 'Open Sans', Arial, sans-serif; }
+#top-area h1, .et-description h2, .et-home-testimonial blockquote p, .description h2, .alt-description h2, blockquote p, #comments, #reply-title, #footer-logo, #et-logo { font-family: 'Raleway', Arial, sans-serif; }
+
+img { max-width: 100%; height: auto; }
+#ie8 img { width: auto; }
+embed, iframe, object, video { max-width: 100%; }
+
+a { text-decoration: none; color: $a-color; }
+a:hover { text-decoration: underline; }
+.clear { clear: both; }
+.ui-tabs-hide { display: none; }
+br.clear { margin: 0px; padding: 0px; }
+
+h1, h2, h3, h4, h5, h6 { padding-bottom: 5px; color: $h-color; line-height: 1em; font-weight: normal; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: inherit; }
+h1 { font-size: 30px; }
+h2 { font-size: 24px; }
+h3 { font-size: 22px; }
+h4 { font-size: 18px; }
+h5 { font-size: 16px; }
+h6 { font-size: 14px; }
+p { padding-bottom: 10px; line-height: 28px; }
+strong { font-weight: bold; color: $strong-color; }
+cite, em, i { font-style: italic; }
+pre, code { font-family: Courier New, monospace; margin-bottom: 10px; }
+ins { text-decoration: none; }
+sup, sub { height: 0; line-height: 1; position: relative; vertical-align: baseline; }
+sup { bottom: 0.8em; }
+sub { top: 0.3em; }
+dl { margin: 0 0 1.5em 0; }
+dl dt { font-weight: bold; }
+dd  { margin-left: 1.5em;}
+blockquote p { padding-bottom: 0px; }
+
+input[type=text],input.text, input.title, textarea, select { background-color: $input-bg-color; border:1px solid $input-brd-color; padding: 2px; color: $input-color; }
+input[type=text]:focus, input.text:focus, input.title:focus, textarea:focus, select:focus { border-color:$input-focus-brd-color; color: $input-focus-color; }
+input[type=text], input.text, input.title, textarea, select { margin:0.5em 0; }
+textarea { padding: 4px; }
+
+img#about-image { float: left; margin: 3px 8px 8px 0px; }
+
+//* html .clearfix             { zoom: 1; } /* IE6 */
+//*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+.container { text-align: left; margin: 0 auto; width: 960px; position: relative; }
+
+/*------------------------------------------------*/
+/*-----------------[TABLETS]-----------------*/
+/*------------------------------------------------*/
+@media only screen and ( min-width: 768px ) and ( max-width: 960px ) {
+	.container { width: 728px; }
+    }
+
+/*------------------------------------------------*/
+/*-----------------[PHONES]-----------------*/
+/*------------------------------------------------*/
+
+@media only screen and ( max-width: 767px ) {
+	.container { width: 440px; }
+    }
+
+@media only screen and ( max-width: 479px ) {
+	.container { width: 280px; }
+    }

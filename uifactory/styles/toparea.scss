@@ -1,0 +1,46 @@
+@import "variables";
+#top-area { 
+  background: center top / cover no-repeat fixed;
+  padding: 127px 0 68px; 
+  .container { 
+    @include clearfix; 
+    text-align: center;
+  }
+  h1 { 
+    margin-bottom: 21px;
+    font-weight: 100;
+    font-size: 100px;
+    color: #fff;
+
+    a { text-decoration: none; }
+  }
+}
+
+.tagline { 
+  font-size: 24px;
+  color: #fff;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 17px 32px 19px;
+  background-color: $highlight-color;
+  margin: 0 auto 60px;
+  display: block;
+
+  a { color: inherit; 
+    &:hover { color: rgba(255,255,255,0.9); text-decoration: none; }
+  }
+}
+
+a.action-button { 
+  border-radius: 6px;
+  padding: 25px 33px;
+  font-size: 30px;
+  color: #fff;
+  display: inline-block;
+  background-color: $body-bg-color;
+  text-decoration: none;
+
+  &:hover { color: rgba(255, 255, 255, 0.9); }
+}
+
+body.home #top-area { padding: 130px 0 141px; }

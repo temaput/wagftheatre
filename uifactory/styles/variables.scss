@@ -1,0 +1,37 @@
+/*------------------------------------------------*/
+/*-----------------[COLORS]------------------------*/
+/*------------------------------------------------*/
+
+$text-color: #959494;
+$body-bg-color: #25383b;
+$h-color: #333;
+$a-color: #4bb6f5;
+$strong-color: #1c1c1c;
+$input-color: #4e4e4e;
+$input-focus-color: #3e3e3e;
+$input-brd-color: #bbb;
+$input-focus-brd-color: #2d3940;
+$input-bg-color: #fff;
+$highlight-color: #c24c4c;
+$light-border-color: #e6e6e6;
+$darker-white-bg: #fafafa;
+
+
+@mixin clearfix {
+  &:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+}
+
+@mixin fadeIn-on-hover($transition) {
+    opacity: 0;
+    transition: $transition;
+    &:hover {
+        opacity: 1;
+    }
+    & > * {
+        opacity: 0;
+        transition: $transition;
+    }
+    &:hover > * {
+        opacity: 1;
+    }
+}

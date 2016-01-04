@@ -1,14 +1,9 @@
 # Mac
 
 .DS_Store
+
 # Custom
 
-_locale/
-/practica/staticfiles/
-/practica/media/
-/practica/static/practica/fonts/
-/practica/whoosh_index/
-/practica/manage.py
 *.sqlite3
 local_settings.py
 *.bak
@@ -73,3 +68,9 @@ docs/_build/
 
 # VIM
 *.swp
+
+
+# js stuff
+node_modules
+.tmp
+app.yaml

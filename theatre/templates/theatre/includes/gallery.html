@@ -1,0 +1,15 @@
+{% load wagtailimages_tags %}
+{% if gallery_items %}
+  <div class="gallery" itemScope itemType="http://schema.org/ImageGallery">
+    {% for item in gallery_items %}
+      <figure itemProp="associatedMedia" itemScope itemType="http://schema.org/ImageObject" class={{itemClasses}}>
+        <a  href={{item.image.file.url}} itemProp="contentUrl">
+          {% image item.image width-240 %}
+        </a>
+        {% if item.caption %}
+          <figcaption itemProp="caption description">{{item.caption}}</figcaption>
+        {% endif %}
+      </figure>
+    {% endfor %}
+  </div>
+{% endif %}

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% load wagtail_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block extra_css %}
   <style type="text/css" media="screen">
-#top-area, #pre-footer { background-image: url({{ page.top_image }}) };
+    #top-area, #pre-footer { background-image: url({{ page.top_image.file.url }}); }
   </style>
 {% endblock %}
 {% block top_area %}
@@ -17,5 +17,10 @@
     <div class="container">
       {{ page.description|richtext }}
     </div>
+  </section>
+  <section class="home-block">
+      <div class="container">
+          {% include "theatre/includes/gallery.html" with gallery_items=self.gallery_items.all only %}
+      </div>
   </section>
 {% endblock %}

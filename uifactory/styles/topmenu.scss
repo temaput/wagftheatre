@@ -1,0 +1,89 @@
+@import "variables";
+
+#top-menu { 
+  .mobile-top-menu { 
+    display: none;
+  }
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  background: $body-bg-color;
+  .container { 
+    @include clearfix;
+    padding: 32px 0 0;
+    text-align: center;
+  }
+  .menu-logo {
+    float: left;
+    margin-top: -15px;
+    img {
+      max-height: 40px;
+    }
+  }
+
+
+  nav > ul > li {
+    display: inline-block;
+    a {
+      padding-bottom: 32px;
+    }
+    &.current-menu-item > a {
+      font-weight: 800;
+    }
+
+  }
+  a {
+    color: $input-bg-color;
+    text-decoration: none;
+    padding: 0 12px;
+    display: block;
+    &:hover {
+      color: rgba(255, 255, 255, 0.9)
+    }
+  }
+}
+
+body.home .menu-logo { display: none }
+/*------------------------------------------------*/
+/*-----------------[TABLETS]-----------------*/
+/*------------------------------------------------*/
+
+@media only screen and ( max-width: 767px ) {
+  #top-menu {
+    .menu-logo {
+    float: none;
+    margin-bottom: 20px;
+  }
+    nav { display: none; }
+
+    .container { padding-bottom: 32px; }
+    .mobile-top-menu { display: block; }
+
+    .menu-container { 
+      position: relative; display: inline-block; color: #fff;
+      cursor: pointer;
+      padding: 0 12px;
+
+      > .menu-arrow { display: block; background: url("/static/images/mobile-arrow.png") no-repeat; width: 15px; height: 10px; position: absolute; top: 5px; right: -16px;   transition: all 0.5s ease-in-out; }
+      &.opened > .menu-arrow {  transform: rotate(-180deg); }
+      .menu-nav {
+        position: absolute; top: 46px; left: -26px; text-align: left; 
+        .menuItem { display: block; }
+        .subMenu {
+          display: block !important; visibility: visible !important; 
+          a { padding-left: 45px !important; }
+          .subMenu a { padding-left: 65px !important; }
+        }
+      }
+    }
+  }
+}
+
+
+
+/*------------------------------------------------*/
+/*-----------------[PHONES]-----------------*/
+/*------------------------------------------------*/
+
+@media only screen and ( max-width: 479px ) {
+  #top-menu nav { display: none; }
+}
