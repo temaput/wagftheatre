@@ -21,6 +21,8 @@ from wagtail.wagtailadmin.edit_handlers import (FieldPanel,
 
 from wagtail.wagtailsearch import index
 
+from wagtail.wagtailsnippets.models import register_snippet
+
 
 class AbstractPerformance(models.Model):
     """
@@ -106,3 +108,11 @@ class GalleryItem(Orderable):
 
 class PerformanceGalleryItem(GalleryItem):
     page = ParentalKey('Performance', related_name="gallery_items")
+
+
+# ----------------------------------------
+# --------------[SNIPPETS]----------------
+# ----------------------------------------
+
+class FooterSnippet(models.Model):
+    pass

@@ -40,8 +40,11 @@
 {% block content %}{% endblock %}
 </main>
 
-<footer>
-    {% block footer %}{% endblock %}
+<footer id="main-footer">
+    <div class="container">
+        {% block footer %}
+        {% endblock %}
+    </div>
 </footer>
 
 {# Global javascript #}
