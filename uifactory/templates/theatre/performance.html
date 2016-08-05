@@ -1,4 +1,4 @@
-{% extends "theatre/layout.html" %}
+{% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block extra_css %}
@@ -20,7 +20,7 @@
   </section>
   <section class="home-block">
       <div class="container">
-          {% include "theatre/includes/gallery.html" with gallery_items=self.gallery_items.all only %}
+          {% include "includes/gallery.html" with gallery_items=self.gallery_items.all only %}
       </div>
   </section>
 {% endblock %}

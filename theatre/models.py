@@ -36,7 +36,9 @@ class AbstractPlace(models.Model):
     """
     pass
 
+
 class Performance(Page):
+    subtitle = models.CharField("Подзаголовок", blank=True, max_length=255)
     top_image = models.ForeignKey(
         "wagtailimages.Image",
         verbose_name="Заглавная картинка",
@@ -49,6 +51,7 @@ class Performance(Page):
     description = RichTextField("Описание", blank=True)
 
     content_panels = Page.content_panels + [
+        FieldPanel('subtitle', classname='full'),
         ImageChooserPanel('top_image'),
         FieldPanel('description'),
         InlinePanel('gallery_items', label="Фотогалерея"),
@@ -57,6 +60,7 @@ class Performance(Page):
     search_fields = Page.search_fields + (
         index.SearchField('descritpion'),
     )
+
 
 
 class Place(Page):
@@ -81,6 +85,18 @@ class PerformanceIndex(Page):
     content_panels = Page.content_panels + [
         FieldPanel('intro'),
     ]
+
+    @property
+    def performance_list(self):
+        perf_list = Performance.objects.child_of(self).live().order_by(
+            "-latest_revision_created_at")
+        return perf_list
+
+    def get_context(self, *args, **kwargs):
+        ctx = super(PerformanceIndex, self).get_context(*args, **kwargs)
+        ctx['performance_list'] = self.performance_list
+        return ctx
+
 
 class PlaceIndex(Page):
     """
