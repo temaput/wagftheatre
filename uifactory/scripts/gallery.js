@@ -1,10 +1,10 @@
 const DEFAULTS = {
   pswpClassName: '.pswp',
-  galleryClassName: '.gallery',
-  thumbsSelector: 'figure.gallery-thumb > a',
+  galleryClassName: '.gallery-anchor',
+  thumbsSelector: '.gallery-thumb-selector > a',
   masonryParams: {
     gutter: 20,
-    itemSelector: '.gallery-thumb',
+    itemSelector: '.gallery-thumb-selector',
     columnWidth: '.gallery-col-sizer',
   },
   photoSwipeParams: {
@@ -58,9 +58,13 @@ class Gallery {
   }
 
   buildThumbnailsGrid() {
-    return new this.tools.Masonry(
-      this.galleryAnchor, this.opts.masonryParams
-    );
+    let Masonry = this.tools.Masonry;
+    if (Masonry !== null) {
+      Masonry = new Masonry(
+        this.galleryAnchor, this.opts.masonryParams
+      );
+    }
+    return Masonry;
   }
 
   openPhotoSwipe(pswpAnchor, thumbIndex, items, opts) {
@@ -80,7 +84,7 @@ class Gallery {
   }
 
   getPswpAnchor() {
-    return this.galleryAnchor.querySelector(this.opts.pswpClassName);
+    return document.querySelector(this.opts.pswpClassName);
   }
 
   parseThumbs() {
@@ -121,15 +125,16 @@ class Gallery {
   }
 
   static createGallery(
-    Masonry,
     PhotoSwipe,
     PhotoSwipeUIDefault,
-    opts = DEFAULTS
+    opts = DEFAULTS,
+    Masonry = null
   ) {
-    const galleryAnchor = document.querySelector(opts.galleryClassName);
+    const newOpts = Object.assign(DEFAULTS, opts);
+    const galleryAnchor = document.querySelector(newOpts.galleryClassName);
     if (galleryAnchor !== null) {
       const tools = { Masonry, PhotoSwipe, PhotoSwipeUIDefault };
-      const gallery = new Gallery(galleryAnchor, tools, opts);
+      const gallery = new Gallery(galleryAnchor, tools, newOpts);
       gallery.init();
     }
     return null;

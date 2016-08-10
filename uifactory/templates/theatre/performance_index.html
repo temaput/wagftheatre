@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="home-block">
-  <div class="container">
+  <div class="mdl-grid content-block">
       {% include "includes/projectslist.html" with projects_list=performance_list only %}
   </div>
-</section>
 {% endblock %}

@@ -10,6 +10,6 @@ import Gallery from './Gallery.js';
 
 document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
-    Gallery.createGallery(Masonry, PhotoSwipe, PhotoSwipeUIDefault);
+    Gallery.createGallery(PhotoSwipe, PhotoSwipeUIDefault);
   }
 };

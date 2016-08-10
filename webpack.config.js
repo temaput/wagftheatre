@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: './uifactory/main.js',
@@ -27,13 +28,16 @@ module.exports = {
       { test: /\.css$/, loader: 'style!css' },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass'],
+        loaders: ['style', 'css', 'postcss', 'sass'],
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: ['url'],
       },
     ],
+  },
+  postcss: function() {
+    return [autoprefixer];
   },
   /*
   plugins: [

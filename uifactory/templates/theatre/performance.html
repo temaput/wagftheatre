@@ -3,24 +3,30 @@
 
 {% block extra_css %}
   <style type="text/css" media="screen">
-    #top-area, #pre-footer { background-image: url({{ page.top_image.file.url }}); }
+  .top-area { background-image: url({{ page.top_image.file.url }}); }
   </style>
 {% endblock %}
-{% block top_area %}
 
-  <h1 class="title">{{ page.title }}</h1>
 
-{% endblock %}
 
 {% block content %}
-  <section class="home-block">
-    <div class="container">
-      {{ page.description|richtext }}
+  <section class="top-area">
+    <h1 class="mdl-typography--display-4 top-area__title">{{ page.title }}</h1>
+    {% if page.subtitle %}
+      <h2 class="mdl-typography--headline top-area__subtitle">{{ page.subtitle }}</h2>
+    {% endif %}
+  </section>
+  <section class="layout-section">
+    <div class="layout-container mdl-grid">
+    {{ page.description|richtext }}
     </div>
   </section>
-  <section class="home-block">
-      <div class="container">
-          {% include "includes/gallery.html" with gallery_items=self.gallery_items.all only %}
-      </div>
+  <section class="layout-section--darker">
+    <div class="layout-container mdl-grid">
+      {% include "includes/gallery.html" with gallery_items=self.gallery_items.all no_radius=True only %}
+    </div>
   </section>
+{% endblock %}
+{% block below_layout %}
+  {% include 'includes/photoswipe_template.html' %}
 {% endblock %}

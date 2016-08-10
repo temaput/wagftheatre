@@ -16,11 +16,6 @@ $highlight-color: #c24c4c;
 $light-border-color: #e6e6e6;
 $darker-white-bg: #fafafa;
 
-
-@mixin clearfix {
-  &:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
-}
-
 @mixin fadeIn-on-hover($transition) {
     opacity: 0;
     transition: $transition;
@@ -35,3 +30,7 @@ $darker-white-bg: #fafafa;
         opacity: 1;
     }
 }
+
+// media breakpoints from mdl
+$tablet-breakpoint: 480px;
+$desktop-breakpoint: 840px;

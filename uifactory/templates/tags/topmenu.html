@@ -1,9 +1,4 @@
 {% load wagtailcore_tags %}
-<div class="menu-logo"><a href="/">{{request.site.site_name}}</a> </div>
-<nav>
-  <ul>
     {% for item in menuitems %}
-      <li><a href="{% pageurl item %}">{{ item.title }}</a></li>
+      <a class="mdl-navigation__link" href="{% pageurl item %}">{{ item.title }}</a>
     {% endfor %}
-  </ul>
-</nav>

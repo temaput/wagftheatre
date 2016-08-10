@@ -1,25 +1,31 @@
-
-    <section>
-        <h4>
-            Dolor voluptatibus?
-        </h4>
-        <div>
-            Dolor totam aut saepe harum neque ipsam! Fugiat quos cum inventore amet corporis aut, id fugiat sequi? Quasi esse nesciunt alias dolores quo. Magnam exercitationem optio iure quas saepe sequi.
-        </div>
-    </section>
-    <section>
-        <h4>
-            Adipisicing fugit.
-        </h4>
-        <div>
-            Lorem ullam deleniti tempore perferendis elit et! Quasi perferendis officia fuga aspernatur cum. Sint est recusandae hic in illum? Ea repellat tempora atque corrupti debitis reprehenderit. Velit dolore eveniet nostrum.
-        </div>
-    </section>
-    <section>
-        <h4>
-            Adipisicing architecto.
-        </h4>
-        <div>
-            Ipsum porro magni id illo eum aperiam tempore recusandae voluptate quam dolore, ipsa. Aperiam distinctio vitae porro non rerum. Nesciunt ad qui odio sint hic quasi pariatur. Quidem nobis repudiandae.
-        </div>
-    </section>
+{% if has_top %}
+  <div class="mdl-mega-footer__top-section">
+    <div class="mdl-mega-footer__left-section">
+      <p>{{footer_data.telephone}}</p>
+    </div>
+    <div class="mdl-mega-footer__right-section">
+        {% for btn in footer_data.social_buttons.all %}
+          <a href="{{btn.link}}" role="button" title="{{btn.slug|title}}" class="mdl-mega-footer__social-btn mega-footer__social-btn--{{btn.slug}}"></a>
+        {% endfor %}
+    </div>
+  </div>
+{% endif %}
+{% if has_middle %}
+  <div class="mdl-mega-footer__middle-section">
+    {% for item in full_menu %}
+      <div class="mdl-mega-footer__drop-down-section">
+        <h1 class="mdl-mega-footer__heading">{{item.item_data.title}}</h1>
+        <ul class="mdl-mega-footer__link-list">
+          {% for subitem in item.subitems %}
+            <li><a href="{{subitem.url}}">{{subitem.title}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+{% if has_bottom %}
+  <div class="mdl-mega-footer__bottom-section">
+    <div class="mdl-mega-footer__left-section"><span>{{footer_data.copyright}}</span></div>
+  </div>
+{% endif %}
