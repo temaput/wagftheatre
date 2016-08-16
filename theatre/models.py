@@ -5,6 +5,7 @@ from __future__ import division
 from __future__ import unicode_literals
 from __future__ import print_function
 
+import json
 
 from django.db import models
 from modelcluster.fields import ParentalKey, ClusterableModel
@@ -18,6 +19,7 @@ from wagtail.wagtailadmin.edit_handlers import (FieldPanel,  # noqa
                                                 InlinePanel,
                                                 MultiFieldPanel,
                                                 )
+from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 
 from wagtail.wagtailsearch import index
 
@@ -49,6 +51,14 @@ class Performance(Page):
         related_name="+",
 
     )
+    video = models.ForeignKey(
+        'theatre.YouTubeEmbedSnippet',
+        verbose_name="Видео с YouTube",
+        null=True,
+        blank=True,
+        related_name='+',
+        on_delete=models.SET_NULL
+    )
     description = RichTextField("Описание", blank=True)
 
     content_panels = Page.content_panels + [
@@ -56,6 +66,7 @@ class Performance(Page):
         ImageChooserPanel('top_image'),
         FieldPanel('description'),
         InlinePanel('gallery_items', label="Фотогалерея"),
+        SnippetChooserPanel('video'),
     ]
 
     search_fields = Page.search_fields + (
@@ -183,6 +194,14 @@ class FooterSnippet(ClusterableModel):
         InlinePanel('social_buttons', label="Социальные группы"),
     ]
 
+    @property
+    def has_top(self):
+        return self.social_buttons.count() or self.email
+
+    @property
+    def has_bottom(self):
+        return self.copyright
+
     def __str__(self):
         return " | ".join([self.copyright, self.telephone, self.email])
 
@@ -193,3 +212,133 @@ class FooterSnippet(ClusterableModel):
 
 class FooterSnippenSocialButton(SocialButton):
     snippet = ParentalKey('FooterSnippet', related_name='social_buttons')
+
+YOUTUBE_PARAMS = (
+    'autoplay',
+    'loop',
+    'fs',
+    'rel',
+    'end',
+    'start',
+    'list',
+    'playlist',
+    'listType',
+)
+
+
+@register_snippet
+class YouTubeEmbedSnippet(models.Model):
+    title = models.CharField(
+        "Название видео",
+        blank=True,
+        max_length=512
+    )
+    video_id = models.CharField(
+        "Код видео",
+        max_length=32
+    )
+    is_widescreen = models.BooleanField(
+        "Широкоформатное видео",
+        default=True,
+        help_text="Если включено - 16:9, если нет - 4:3"
+    )
+    autoplay = models.BooleanField(
+        "Автовоспроизведение",
+        default=False
+    )
+    loop = models.BooleanField(
+        "Зациклить видео",
+        default=False
+    )
+    fs = models.BooleanField(
+        "Разрешить показывать на весь экран",
+        default=True
+    )
+    rel = models.BooleanField(
+        "Показывать связанные видео",
+        default=False
+    )
+    player_end = models.PositiveIntegerField(
+        "Остановиться на",
+        help_text=("Воспроизведение остановится на указанной секунде. "
+                   "Оставьте пустым, чтобы воспроизвести видео целиком"),
+        blank=True,
+        null=True
+    )
+    player_start = models.PositiveIntegerField(
+        "Начать с",
+        help_text=("Воспроизведение начнется на указанной секунде. "
+                   "Оставьте пустым, чтобы воспроизвести видео целиком"),
+        blank=True,
+        null=True
+    )
+    player_playlist = models.CharField(
+        "Дополнительные видео",
+        help_text=("Дополнительные коды через запятую. "
+                   "Будут воспроизведены после основного видео"
+                   ),
+        max_length=1024,
+        blank=True
+    )
+    player_listType = models.CharField(
+        "Тип плейлиста",
+        help_text="Выбрать, если используется плей-лист",
+        max_length=12,
+        choices=(
+            ('playlist', 'Плей-лист'),
+            ('search', 'Поисковый запрос'),
+            ('user_uploads', 'Все видео пользователя'),
+        ),
+        blank=True
+    )
+    player_list = models.CharField(
+        "Код плейлиста",
+        help_text="Указать, если используется плей-лист YouTube",
+        max_length=32,
+        blank=True
+    )
+
+    def get_player_parameters(self):
+        return json.dumps({
+            'playerVars': {k: getattr(self, 'player_%s' % k)
+                           for k in YOUTUBE_PARAMS},
+            'videoId': self.video_id,
+        }, ensure_ascii=False)
+
+    @property
+    def player_autoplay(self):
+        return 1 if self.autoplay else 0
+
+    @property
+    def player_loop(self):
+        return 1 if self.loop else 0
+
+    @property
+    def player_rel(self):
+        return 1 if self.rel else 0
+
+    @property
+    def player_fs(self):
+        return 1 if self.fs else 0
+
+    @property
+    def has_additional_videos(self):
+        return self.player_playlist != ''
+
+    @property
+    def has_end(self):
+        return self.player_end is not None
+
+    @property
+    def has_start(self):
+        return self.player_start is not None
+
+    @property
+    def has_listType(self):
+        return self.player_listType != ''
+
+    def __str__(self):
+        return "Видео с YouTube %s (%s)" % (self.title or '__', self.video_id)
+
+    class Meta:
+        verbose_name = "Видео с YouTube"

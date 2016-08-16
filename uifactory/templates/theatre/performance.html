@@ -21,11 +21,20 @@
     {{ page.description|richtext }}
     </div>
   </section>
-  <section class="layout-section--darker">
-    <div class="layout-container mdl-grid">
-      {% include "includes/gallery.html" with gallery_items=self.gallery_items.all no_radius=True only %}
-    </div>
-  </section>
+  {% if self.gallery_items.count %}
+    <section class="layout-section--darker">
+      <div class="layout-container mdl-grid">
+        {% include "includes/gallery.html" with gallery_items=self.gallery_items.all no_radius=True only %}
+      </div>
+    </section>
+  {% endif %}
+  {% if self.video %}
+    <section class="layout-section">
+      <div class="layout-container mdl-grid">
+        {% include "includes/video_embed.html" with video=self.video only %}
+      </div>
+    </section>
+  {% endif %}
 {% endblock %}
 {% block below_layout %}
   {% include 'includes/photoswipe_template.html' %}

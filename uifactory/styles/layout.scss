@@ -11,6 +11,11 @@ figure, section {
 .layout-container {
     max-width: 960px;
 }
+.layout-container--no-grid {
+  @extend .mdl-grid;
+  display: block;
+  margin: auto;
+}
 .layout-section {
     padding-top: 115px;
 }
