@@ -8,9 +8,12 @@ from __future__ import print_function
 import json
 
 from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
+
 from modelcluster.fields import ParentalKey, ClusterableModel
 
-from wagtail.wagtailcore.models import Page, Orderable
+from wagtail.wagtailcore.models import Page, Orderable, PageManager
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel,  # noqa
@@ -25,19 +28,51 @@ from wagtail.wagtailsearch import index
 
 from wagtail.wagtailsnippets.models import register_snippet
 
-
-class AbstractPerformance(models.Model):
-    """
-    Critical performance fields and routines here. From old ftheatre
-    """
-    pass
+import logging
+log = logging.getLogger(__name__)
 
 
-class AbstractPlace(models.Model):
-    """
-    Critical place fields and routines from old ftheatre project
-    """
-    pass
+
+class ScheduledPManager(PageManager):
+    def get_queryset(self):
+        return super(ScheduledPManager, self).get_queryset().filter(
+            shows_scheduled__showtime__gte=timezone.localtime(
+                timezone.now()).date(),
+            shows_scheduled__sold_out=False,
+        ).distinct()
+
+    def resolve_p2p(self, qs, pkey, p_id=None, p_slug=None):
+        kwargs = {}
+        if p_id is not None:
+            kwargs['shows_scheduled__%s' % pkey] = p_id
+        else:
+            kwargs['shows_scheduled__%s__slug' % pkey] = p_slug
+        log.debug("resolve_p2p kwargs: %s", kwargs)
+        return qs.filter(**kwargs).distinct()
+
+
+class ScheduledPerformanceManager(ScheduledPManager):
+
+    def by_place_field(self, **kwargs):
+        qs = self.get_queryset()
+        kwargs_new = {'p_%s' % k: kwargs[k] for k in kwargs}
+        return self.resolve_p2p(qs, 'place', **kwargs_new)
+
+    def by_place(self, place):
+        qs = self.get_queryset()
+        return self.resolve_p2p(qs, 'place', p_id=place)
+
+
+class ScheduledPlaceManager(ScheduledPManager):
+
+    def by_performance_field(self, **kwargs):
+        qs = self.get_queryset()
+        kwargs_new = {'p_%s' % k: kwargs[k] for k in kwargs}
+        return self.resolve_p2p(qs, 'performance', **kwargs_new)
+
+    def by_performance(self, performance):
+        qs = self.get_queryset()
+        return self.resolve_p2p(qs, 'performance', p_id=performance)
 
 
 class Performance(Page):
@@ -49,7 +84,6 @@ class Performance(Page):
         null=True,
         on_delete=models.SET_NULL,
         related_name="+",
-
     )
     video = models.ForeignKey(
         'theatre.YouTubeEmbedSnippet',
@@ -69,24 +103,92 @@ class Performance(Page):
         SnippetChooserPanel('video'),
     ]
 
-    search_fields = Page.search_fields + (
-        index.SearchField('descritpion'),
-    )
+    search_fields = Page.search_fields + [
+        index.SearchField('description'),
+    ]
+
+    objects = PageManager()
+    scheduled = ScheduledPerformanceManager()
+
+    class Meta:
+        ordering = ["title"]
+        verbose_name = "Спектакль"
+        verbose_name_plural = "Спектакли"
+
+
+class PlaceAdministrator(models.Model):
+    """
+    Менеджер площадки
+    - привязан к пользователю
+    - телефон
+    """
+    user = models.OneToOneField(
+            User,
+            verbose_name="Зарегистрирован в системе как",
+            help_text="Менеджер должен быть зарегистирован как персонал сайта"
+            )
+    tel = models.CharField("Мобильный телефон", max_length=50,
+            blank=True)
+
+    def first_name(self):
+        return self.user.first_name
+    first_name.short_description = "Имя"
+    def last_name(self):
+        return self.user.last_name
+    last_name.short_description = "Фамилия"
+    def email(self):
+        return self.user.email
+    first_name = property(first_name)
+    last_name = property(last_name)
+    email = property(email)
+
+    def __str__(self):
+        return "%s %s" % (self.user.first_name,
+                self.user.last_name)
+    class Meta:
+        verbose_name = "Менеджер"
+        verbose_name_plural = "Менеджеры площадок"
 
 
 class Place(Page):
     description = RichTextField("Описание", blank=True)
-    brief = RichTextField("Как добраться", blank=True)
 
+    top_image = models.ForeignKey(
+        "wagtailimages.Image",
+        verbose_name="Заглавная картинка",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    address = models.CharField("Адрес", max_length=256, blank=True)
+    tel = models.CharField("Телефон", max_length=15, blank=True)
+    administrator = models.ForeignKey(
+        "PlaceAdministrator", blank=True, null=True,
+        on_delete=models.SET_NULL, related_name='+',
+        verbose_name="Менеджер",
+        help_text="Человек, отвечающий за бронирование билетов для"
+        " данной площадки (должен быть зарегистрирован на сайте)"
+    )
     content_panels = Page.content_panels + [
         FieldPanel('description'),
-        FieldPanel('brief'),
+        FieldPanel('address'),
+        FieldPanel('tel'),
+        FieldPanel('administrator'),
+        ImageChooserPanel('top_image'),
     ]
 
-    search_fields = Page.search_fields + (
-        index.SearchField('descritpion'),
-    )
+    search_fields = Page.search_fields + [
+        index.SearchField('description'),
+    ]
 
+    objects = PageManager()
+    scheduled = ScheduledPlaceManager()
+
+    class Meta:
+        ordering=["title"]
+        verbose_name = "Площадка"
+        verbose_name_plural = "Площадки"
 
 class PerformanceIndex(Page):
     """

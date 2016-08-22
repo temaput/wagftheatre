@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0">
+  <object model="wagtailimages.filter" pk="1">
+    <field name="spec" type="CharField">max-165x165</field>
+  </object>
+  <object model="wagtailimages.filter" pk="2">
+    <field name="spec" type="CharField">fill-400x300</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="1">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/vk-logo.max-165x165.png</field>
+    <field name="width" type="IntegerField">150</field>
+    <field name="height" type="IntegerField">150</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">13</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="2">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/gplus-logo.max-165x165.jpg</field>
+    <field name="width" type="IntegerField">100</field>
+    <field name="height" type="IntegerField">100</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">12</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="3">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/fb-logo.max-165x165.png</field>
+    <field name="width" type="IntegerField">150</field>
+    <field name="height" type="IntegerField">150</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">11</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="4">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/19.max-165x165.jpg</field>
+    <field name="width" type="IntegerField">165</field>
+    <field name="height" type="IntegerField">116</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">10</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="5">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/18.max-165x165.jpg</field>
+    <field name="width" type="IntegerField">165</field>
+    <field name="height" type="IntegerField">123</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">9</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="6">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/17.max-165x165.jpg</field>
+    <field name="width" type="IntegerField">165</field>
+    <field name="height" type="IntegerField">118</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">8</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="7">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/16.max-165x165.jpg</field>
+    <field name="width" type="IntegerField">116</field>
+    <field name="height" type="IntegerField">165</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">7</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="8">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/15.max-165x165.jpg</field>
+    <field name="width" type="IntegerField">165</field>
+    <field name="height" type="IntegerField">109</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">6</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="9">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/14.max-165x165.jpg</field>
+    <field name="width" type="IntegerField">165</field>
+    <field name="height" type="IntegerField">109</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">5</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="10">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/13.max-165x165.jpg</field>
+    <field name="width" type="IntegerField">165</field>
+    <field name="height" type="IntegerField">109</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">4</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="11">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/12.max-165x165.jpg</field>
+    <field name="width" type="IntegerField">165</field>
+    <field name="height" type="IntegerField">109</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">3</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="12">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/11.max-165x165.jpg</field>
+    <field name="width" type="IntegerField">163</field>
+    <field name="height" type="IntegerField">165</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">2</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="13">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">1</field>
+    <field name="file" type="FileField">images/2.max-165x165.jpg</field>
+    <field name="width" type="IntegerField">165</field>
+    <field name="height" type="IntegerField">118</field>
+    <field name="focal_point_key" type="CharField"></field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">1</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="14">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">2</field>
+    <field name="file" type="FileField">images/14.2e16d0ba.fill-400x300.jpg</field>
+    <field name="width" type="IntegerField">400</field>
+    <field name="height" type="IntegerField">300</field>
+    <field name="focal_point_key" type="CharField">2e16d0ba</field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">5</field>
+  </object>
+  <object model="wagtailimages.rendition" pk="15">
+    <field name="filter" rel="ManyToOneRel" to="wagtailimages.filter">2</field>
+    <field name="file" type="FileField">images/15.2e16d0ba.fill-400x300.jpg</field>
+    <field name="width" type="IntegerField">400</field>
+    <field name="height" type="IntegerField">300</field>
+    <field name="focal_point_key" type="CharField">2e16d0ba</field>
+    <field name="image" rel="ManyToOneRel" to="wagtailimages.image">6</field>
+  </object>
+  <object model="wagtailcore.site" pk="2">
+    <field name="hostname" type="CharField">localhost</field>
+    <field name="port" type="IntegerField">80</field>
+    <field name="site_name" type="CharField">Первый театр</field>
+    <field name="root_page" rel="ManyToOneRel" to="wagtailcore.page">3</field>
+    <field name="is_default_site" type="BooleanField">True</field>
+  </object>
+  <object model="wagtailcore.collection" pk="1">
+    <field name="path" type="CharField">0001</field>
+    <field name="depth" type="PositiveIntegerField">1</field>
+    <field name="numchild" type="PositiveIntegerField">0</field>
+    <field name="name" type="CharField">Root</field>
+  </object>
+  <object model="sessions.session" pk="chkm66n1sttmzl5wbrd4sqyx0xzp2729">
+    <field name="session_data" type="TextField">MjNjOTFiZWEwYmJhN2ZkMDM1MTZiZTA0ODg5NzlhZWU3YjZlOGY5Nzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiN2RhZWI2ZmI4MTk0NzNkMGFmMDBkNDk4MmM0NDY2MzcwZDgxNzdlMyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=</field>
+    <field name="expire_date" type="DateTimeField">2016-09-02T14:51:55.193389+00:00</field>
+  </object>
+  <object model="auth.group" pk="1">
+    <field name="name" type="CharField">Moderators</field>
+    <field name="permissions" rel="ManyToManyRel" to="auth.permission"><object pk="4"></object><object pk="5"></object><object pk="6"></object><object pk="7"></object><object pk="1"></object><object pk="2"></object><object pk="3"></object></field>
+  </object>
+  <object model="auth.group" pk="2">
+    <field name="name" type="CharField">Editors</field>
+    <field name="permissions" rel="ManyToManyRel" to="auth.permission"><object pk="4"></object><object pk="5"></object><object pk="6"></object><object pk="7"></object><object pk="1"></object><object pk="2"></object><object pk="3"></object></field>
+  </object>
+  <object model="auth.user" pk="1">
+    <field name="password" type="CharField">pbkdf2_sha256$30000$A2IebrtMYRmR$FIR16wsy96fRUMo/aOgwd5JsT4H7QYGU7UONfEV2WIc=</field>
+    <field name="last_login" type="DateTimeField">2016-08-19T14:51:55.191062+00:00</field>
+    <field name="is_superuser" type="BooleanField">True</field>
+    <field name="username" type="CharField">tema</field>
+    <field name="first_name" type="CharField"></field>
+    <field name="last_name" type="CharField"></field>
+    <field name="email" type="CharField">putilkin@gmail.com</field>
+    <field name="is_staff" type="BooleanField">True</field>
+    <field name="is_active" type="BooleanField">True</field>
+    <field name="date_joined" type="DateTimeField">2016-08-19T14:49:57.257804+00:00</field>
+    <field name="groups" rel="ManyToManyRel" to="auth.group"></field>
+    <field name="user_permissions" rel="ManyToManyRel" to="auth.permission"></field>
+  </object>
+  <object model="wagtailcore.groupcollectionpermission" pk="1">
+    <field name="group" rel="ManyToOneRel" to="auth.group">2</field>
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="permission" rel="ManyToOneRel" to="auth.permission">1</field>
+  </object>
+  <object model="wagtailcore.groupcollectionpermission" pk="2">
+    <field name="group" rel="ManyToOneRel" to="auth.group">1</field>
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="permission" rel="ManyToOneRel" to="auth.permission">1</field>
+  </object>
+  <object model="wagtailcore.groupcollectionpermission" pk="3">
+    <field name="group" rel="ManyToOneRel" to="auth.group">2</field>
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="permission" rel="ManyToOneRel" to="auth.permission">2</field>
+  </object>
+  <object model="wagtailcore.groupcollectionpermission" pk="4">
+    <field name="group" rel="ManyToOneRel" to="auth.group">1</field>
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="permission" rel="ManyToOneRel" to="auth.permission">2</field>
+  </object>
+  <object model="wagtailcore.groupcollectionpermission" pk="5">
+    <field name="group" rel="ManyToOneRel" to="auth.group">2</field>
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="permission" rel="ManyToOneRel" to="auth.permission">5</field>
+  </object>
+  <object model="wagtailcore.groupcollectionpermission" pk="6">
+    <field name="group" rel="ManyToOneRel" to="auth.group">1</field>
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="permission" rel="ManyToOneRel" to="auth.permission">5</field>
+  </object>
+  <object model="wagtailcore.groupcollectionpermission" pk="7">
+    <field name="group" rel="ManyToOneRel" to="auth.group">2</field>
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="permission" rel="ManyToOneRel" to="auth.permission">6</field>
+  </object>
+  <object model="wagtailcore.groupcollectionpermission" pk="8">
+    <field name="group" rel="ManyToOneRel" to="auth.group">1</field>
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="permission" rel="ManyToOneRel" to="auth.permission">6</field>
+  </object>
+  <object model="wagtailcore.grouppagepermission" pk="1">
+    <field name="group" rel="ManyToOneRel" to="auth.group">1</field>
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">1</field>
+    <field name="permission_type" type="CharField">add</field>
+  </object>
+  <object model="wagtailcore.grouppagepermission" pk="2">
+    <field name="group" rel="ManyToOneRel" to="auth.group">1</field>
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">1</field>
+    <field name="permission_type" type="CharField">edit</field>
+  </object>
+  <object model="wagtailcore.grouppagepermission" pk="3">
+    <field name="group" rel="ManyToOneRel" to="auth.group">1</field>
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">1</field>
+    <field name="permission_type" type="CharField">publish</field>
+  </object>
+  <object model="wagtailcore.grouppagepermission" pk="4">
+    <field name="group" rel="ManyToOneRel" to="auth.group">2</field>
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">1</field>
+    <field name="permission_type" type="CharField">add</field>
+  </object>
+  <object model="wagtailcore.grouppagepermission" pk="5">
+    <field name="group" rel="ManyToOneRel" to="auth.group">2</field>
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">1</field>
+    <field name="permission_type" type="CharField">edit</field>
+  </object>
+  <object model="wagtailcore.grouppagepermission" pk="6">
+    <field name="group" rel="ManyToOneRel" to="auth.group">1</field>
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">1</field>
+    <field name="permission_type" type="CharField">lock</field>
+  </object>
+  <object model="wagtailcore.pagerevision" pk="1">
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">4</field>
+    <field name="submitted_for_moderation" type="BooleanField">False</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:52:33.255470+00:00</field>
+    <field name="user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="content_json" type="TextField">{"seo_title": "", "slug": "\u0441\u043f\u0435\u043a\u0442\u0430\u043a\u043b\u0438", "has_unpublished_changes": false, "expire_at": null, "url_path": "/home/\u0441\u043f\u0435\u043a\u0442\u0430\u043a\u043b\u0438/", "search_description": "", "owner": 1, "pk": 4, "live": true, "path": "000100010001", "latest_revision_created_at": null, "locked": false, "depth": 3, "go_live_at": null, "title": "\u0421\u043f\u0435\u043a\u0442\u0430\u043a\u043b\u0438", "expired": false, "numchild": 0, "content_type": 14, "intro": "\u041d\u0430\u0448\u0438 \u0441\u043f\u0435\u043a\u0442\u0430\u043a\u043b\u0438", "first_published_at": null, "show_in_menus": false}</field>
+    <field name="approved_go_live_at" type="DateTimeField"><None></None></field>
+  </object>
+  <object model="wagtailcore.pagerevision" pk="2">
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">5</field>
+    <field name="submitted_for_moderation" type="BooleanField">False</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:52:48.295563+00:00</field>
+    <field name="user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="content_json" type="TextField">{"seo_title": "", "slug": "\u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0438", "has_unpublished_changes": false, "expire_at": null, "url_path": "/home/\u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0438/", "search_description": "", "owner": 1, "pk": 5, "live": true, "path": "000100010002", "latest_revision_created_at": null, "locked": false, "depth": 3, "go_live_at": null, "title": "\u041f\u043b\u043e\u0449\u0430\u0434\u043a\u0438", "expired": false, "numchild": 0, "content_type": 13, "intro": "\u041d\u0430\u0448\u0438 \u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0438", "first_published_at": null, "show_in_menus": false}</field>
+    <field name="approved_go_live_at" type="DateTimeField"><None></None></field>
+  </object>
+  <object model="wagtailcore.pagerevision" pk="3">
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">4</field>
+    <field name="submitted_for_moderation" type="BooleanField">False</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:53:49.146055+00:00</field>
+    <field name="user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="content_json" type="TextField">{"seo_title": "", "slug": "performances", "has_unpublished_changes": false, "expire_at": null, "url_path": "/home/\u0441\u043f\u0435\u043a\u0442\u0430\u043a\u043b\u0438/", "search_description": "", "owner": 1, "pk": 4, "live": true, "path": "000100010001", "latest_revision_created_at": "2016-08-19T14:52:33.255Z", "locked": false, "depth": 3, "go_live_at": null, "title": "\u0421\u043f\u0435\u043a\u0442\u0430\u043a\u043b\u0438", "expired": false, "numchild": 0, "content_type": 14, "intro": "\u041d\u0430\u0448\u0438 \u0441\u043f\u0435\u043a\u0442\u0430\u043a\u043b\u0438", "first_published_at": "2016-08-19T14:52:33.266Z", "show_in_menus": true}</field>
+    <field name="approved_go_live_at" type="DateTimeField"><None></None></field>
+  </object>
+  <object model="wagtailcore.pagerevision" pk="4">
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">5</field>
+    <field name="submitted_for_moderation" type="BooleanField">False</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:54:04.138512+00:00</field>
+    <field name="user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="content_json" type="TextField">{"seo_title": "", "slug": "places", "has_unpublished_changes": false, "expire_at": null, "url_path": "/home/\u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0438/", "search_description": "", "owner": 1, "pk": 5, "live": true, "path": "000100010002", "latest_revision_created_at": "2016-08-19T14:52:48.295Z", "locked": false, "depth": 3, "go_live_at": null, "title": "\u041f\u043b\u043e\u0449\u0430\u0434\u043a\u0438", "expired": false, "numchild": 0, "content_type": 13, "intro": "\u041d\u0430\u0448\u0438 \u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0438", "first_published_at": "2016-08-19T14:52:48.306Z", "show_in_menus": true}</field>
+    <field name="approved_go_live_at" type="DateTimeField"><None></None></field>
+  </object>
+  <object model="wagtailcore.pagerevision" pk="5">
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">6</field>
+    <field name="submitted_for_moderation" type="BooleanField">False</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T15:05:06.579738+00:00</field>
+    <field name="user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="content_json" type="TextField">{"pk": 6, "title": "\u0421\u043d\u0435\u0433", "go_live_at": null, "has_unpublished_changes": false, "locked": false, "latest_revision_created_at": null, "owner": 1, "first_published_at": null, "video": null, "top_image": 5, "gallery_items": [], "description": "&lt;h2&gt;\u0412\u0430\u0448 \u0448\u0435\u0434\u0435\u0432\u0440 \u0433\u043e\u0442\u043e\u0432!&lt;/h2&gt;&lt;p&gt;\u0422\u0430\u043a\u0438\u043c \u043e\u0431\u0440\u0430\u0437\u043e\u043c \u043a\u043e\u043d\u0441\u0443\u043b\u044c\u0442\u0430\u0446\u0438\u044f \u0441 \u0448\u0438\u0440\u043e\u043a\u0438\u043c \u0430\u043a\u0442\u0438\u0432\u043e\u043c \u0442\u0440\u0435\u0431\u0443\u044e\u0442 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u0438\u044f \u0438 \u0443\u0442\u043e\u0447\u043d\u0435\u043d\u0438\u044f \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0439 \u0443\u0441\u043b\u043e\u0432\u0438\u0439 \u0430\u043a\u0442\u0438\u0432\u0438\u0437\u0430\u0446\u0438\u0438. \u0422\u0430\u043a\u0438\u043c \u043e\u0431\u0440\u0430\u0437\u043e\u043c \u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u044b\u0439 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439 \u0440\u043e\u0441\u0442 \u0438 \u0441\u0444\u0435\u0440\u0430 \u043d\u0430\u0448\u0435\u0439 \u0430\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u0438 \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u0441\u043e\u0431\u043e\u0439 \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u044b\u0439 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u0434\u0430\u043b\u044c\u043d\u0435\u0439\u0448\u0438\u0445 \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0439 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u044f.\u00a0&lt;/p&gt;&lt;p&gt;\u0422\u0430\u043a\u0438\u043c \u043e\u0431\u0440\u0430\u0437\u043e\u043c \u043d\u0430\u0447\u0430\u043b\u043e \u043f\u043e\u0432\u0441\u0435\u0434\u043d\u0435\u0432\u043d\u043e\u0439 \u0440\u0430\u0431\u043e\u0442\u044b \u043f\u043e \u0444\u043e\u0440\u043c\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044e \u043f\u043e\u0437\u0438\u0446\u0438\u0438 \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u0435\u0442 \u0448\u0438\u0440\u043e\u043a\u043e\u043c\u0443 \u043a\u0440\u0443\u0433\u0443 (\u0441\u043f\u0435\u0446\u0438\u0430\u043b\u0438\u0441\u0442\u043e\u0432) \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u0444\u043e\u0440\u043c\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0438 \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f \u043a\u0430\u0434\u0440\u043e\u0432, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442 \u043d\u0430\u0441\u0443\u0449\u043d\u044b\u043c \u043f\u043e\u0442\u0440\u0435\u0431\u043d\u043e\u0441\u0442\u044f\u043c. \u0420\u0430\u0432\u043d\u044b\u043c \u043e\u0431\u0440\u0430\u0437\u043e\u043c \u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u044b\u0439 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439 \u0440\u043e\u0441\u0442 \u0438 \u0441\u0444\u0435\u0440\u0430 \u043d\u0430\u0448\u0435\u0439 \u0430\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u0438 \u0442\u0440\u0435\u0431\u0443\u044e\u0442 \u043e\u0442 \u043d\u0430\u0441 \u0430\u043d\u0430\u043b\u0438\u0437\u0430 \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0439 \u043f\u0440\u043e\u0433\u0440\u0435\u0441\u0441\u0438\u0432\u043d\u043e\u0433\u043e \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u044f. \u0418\u0434\u0435\u0439\u043d\u044b\u0435 \u0441\u043e\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f \u0432\u044b\u0441\u0448\u0435\u0433\u043e \u043f\u043e\u0440\u044f\u0434\u043a\u0430, \u0430 \u0442\u0430\u043a\u0436\u0435 \u0441\u043b\u043e\u0436\u0438\u0432\u0448\u0430\u044f\u0441\u044f \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438 \u0442\u0440\u0435\u0431\u0443\u044e\u0442 \u043e\u0442 \u043d\u0430\u0441 \u0430\u043d\u0430\u043b\u0438\u0437\u0430 \u043d\u043e\u0432\u044b\u0445 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0439. \u0422\u0430\u043a\u0438\u043c \u043e\u0431\u0440\u0430\u0437\u043e\u043c \u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u043e\u0435 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u043e\u043d\u043d\u043e-\u043f\u0440\u043e\u043f\u0430\u0433\u0430\u043d\u0434\u0438\u0441\u0442\u0441\u043a\u043e\u0435 \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u0435 \u043d\u0430\u0448\u0435\u0439 \u0434\u0435\u044f\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438 \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u043e\u0446\u0435\u043d\u0438\u0442\u044c \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f \u043a\u0430\u0434\u0440\u043e\u0432, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442 \u043d\u0430\u0441\u0443\u0449\u043d\u044b\u043c \u043f\u043e\u0442\u0440\u0435\u0431\u043d\u043e\u0441\u0442\u044f\u043c.&lt;/p&gt;", "url_path": "/home/performances/\u0441\u043d\u0435\u0433/", "slug": "\u0441\u043d\u0435\u0433", "expired": false, "search_description": "", "content_type": 11, "show_in_menus": false, "subtitle": "\u0421\u043f\u0435\u043a\u0442\u0430\u043a\u043b\u044c \u043f\u0440\u043e \u0441\u043d\u0435\u0433", "seo_title": "", "expire_at": null, "depth": 4, "path": "0001000100010001", "live": true, "numchild": 0}</field>
+    <field name="approved_go_live_at" type="DateTimeField"><None></None></field>
+  </object>
+  <object model="wagtailcore.pagerevision" pk="6">
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">7</field>
+    <field name="submitted_for_moderation" type="BooleanField">False</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T15:20:11.999843+00:00</field>
+    <field name="user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="content_json" type="TextField">{"latest_revision_created_at": null, "search_description": "", "url_path": "/home/places/\u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0430-\u0446\u0435\u043d\u0442\u0440-\u0438\u043c-\u043c\u0435\u0439\u0435\u0440\u0445\u043e\u043b\u044c\u0434\u0430/", "expire_at": null, "slug": "\u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0430-\u0446\u0435\u043d\u0442\u0440-\u0438\u043c-\u043c\u0435\u0439\u0435\u0440\u0445\u043e\u043b\u044c\u0434\u0430", "content_type": 12, "numchild": 0, "title": "\u041f\u043b\u043e\u0449\u0430\u0434\u043a\u0430 \u0426\u0435\u043d\u0442\u0440 \u0438\u043c. \u041c\u0435\u0439\u0435\u0440\u0445\u043e\u043b\u044c\u0434\u0430", "expired": false, "tel": "", "has_unpublished_changes": false, "address": "", "first_published_at": null, "live": true, "seo_title": "", "description": "&lt;h2&gt;\u0418\u0434\u0435\u0439\u043d\u044b\u0435 \u0441\u043e\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f&lt;/h2&gt;&lt;p&gt;\u0418\u0434\u0435\u0439\u043d\u044b\u0435 \u0441\u043e\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f \u0432\u044b\u0441\u0448\u0435\u0433\u043e \u043f\u043e\u0440\u044f\u0434\u043a\u0430, \u0430 \u0442\u0430\u043a\u0436\u0435 \u0443\u043a\u0440\u0435\u043f\u043b\u0435\u043d\u0438\u0435 \u0438 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u044b \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u0441\u043e\u0431\u043e\u0439 \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u044b\u0439 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0439 \u0443\u0441\u043b\u043e\u0432\u0438\u0439 \u0430\u043a\u0442\u0438\u0432\u0438\u0437\u0430\u0446\u0438\u0438. \u0420\u0430\u0432\u043d\u044b\u043c \u043e\u0431\u0440\u0430\u0437\u043e\u043c \u0443\u043a\u0440\u0435\u043f\u043b\u0435\u043d\u0438\u0435 \u0438 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u044b \u0442\u0440\u0435\u0431\u0443\u044e\u0442 \u043e\u0442 \u043d\u0430\u0441 \u0430\u043d\u0430\u043b\u0438\u0437\u0430 \u043f\u043e\u0437\u0438\u0446\u0438\u0439, \u0437\u0430\u043d\u0438\u043c\u0430\u0435\u043c\u044b\u0445 \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0430\u043c\u0438 \u0432 \u043e\u0442\u043d\u043e\u0448\u0435\u043d\u0438\u0438 \u043f\u043e\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u043d\u044b\u0445 \u0437\u0430\u0434\u0430\u0447. \u0420\u0430\u0437\u043d\u043e\u043e\u0431\u0440\u0430\u0437\u043d\u044b\u0439 \u0438 \u0431\u043e\u0433\u0430\u0442\u044b\u0439 \u043e\u043f\u044b\u0442 \u043a\u043e\u043d\u0441\u0443\u043b\u044c\u0442\u0430\u0446\u0438\u044f \u0441 \u0448\u0438\u0440\u043e\u043a\u0438\u043c \u0430\u043a\u0442\u0438\u0432\u043e\u043c \u0442\u0440\u0435\u0431\u0443\u044e\u0442 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u0438\u044f \u0438 \u0443\u0442\u043e\u0447\u043d\u0435\u043d\u0438\u044f \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0439 \u0443\u0441\u043b\u043e\u0432\u0438\u0439 \u0430\u043a\u0442\u0438\u0432\u0438\u0437\u0430\u0446\u0438\u0438. \u0422\u0430\u043a\u0438\u043c \u043e\u0431\u0440\u0430\u0437\u043e\u043c \u0434\u0430\u043b\u044c\u043d\u0435\u0439\u0448\u0435\u0435 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435 \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0445 \u0444\u043e\u0440\u043c \u0434\u0435\u044f\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438 \u0438\u0433\u0440\u0430\u0435\u0442 \u0432\u0430\u0436\u043d\u0443\u044e \u0440\u043e\u043b\u044c \u0432 \u0444\u043e\u0440\u043c\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0438 \u0444\u043e\u0440\u043c \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u044f. \u0417\u043d\u0430\u0447\u0438\u043c\u043e\u0441\u0442\u044c \u044d\u0442\u0438\u0445 \u043f\u0440\u043e\u0431\u043b\u0435\u043c \u043d\u0430\u0441\u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0447\u0435\u0432\u0438\u0434\u043d\u0430, \u0447\u0442\u043e \u043d\u0430\u0447\u0430\u043b\u043e \u043f\u043e\u0432\u0441\u0435\u0434\u043d\u0435\u0432\u043d\u043e\u0439 \u0440\u0430\u0431\u043e\u0442\u044b \u043f\u043e \u0444\u043e\u0440\u043c\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044e \u043f\u043e\u0437\u0438\u0446\u0438\u0438 \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u043e\u0446\u0435\u043d\u0438\u0442\u044c \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f \u043a\u0430\u0434\u0440\u043e\u0432, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442 \u043d\u0430\u0441\u0443\u0449\u043d\u044b\u043c \u043f\u043e\u0442\u0440\u0435\u0431\u043d\u043e\u0441\u0442\u044f\u043c.\u00a0&lt;/p&gt;&lt;p&gt;\u0421 \u0434\u0440\u0443\u0433\u043e\u0439 \u0441\u0442\u043e\u0440\u043e\u043d\u044b \u0440\u0430\u043c\u043a\u0438 \u0438 \u043c\u0435\u0441\u0442\u043e \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f \u043a\u0430\u0434\u0440\u043e\u0432 \u0441\u043f\u043e\u0441\u043e\u0431\u0441\u0442\u0432\u0443\u0435\u0442 \u043f\u043e\u0434\u0433\u043e\u0442\u043e\u0432\u043a\u0438 \u0438 \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0438 \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f \u043a\u0430\u0434\u0440\u043e\u0432, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442 \u043d\u0430\u0441\u0443\u0449\u043d\u044b\u043c \u043f\u043e\u0442\u0440\u0435\u0431\u043d\u043e\u0441\u0442\u044f\u043c. \u0417\u043d\u0430\u0447\u0438\u043c\u043e\u0441\u0442\u044c \u044d\u0442\u0438\u0445 \u043f\u0440\u043e\u0431\u043b\u0435\u043c \u043d\u0430\u0441\u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0447\u0435\u0432\u0438\u0434\u043d\u0430, \u0447\u0442\u043e \u0440\u0430\u043c\u043a\u0438 \u0438 \u043c\u0435\u0441\u0442\u043e \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f \u043a\u0430\u0434\u0440\u043e\u0432 \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u0441\u043e\u0431\u043e\u0439 \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u044b\u0439 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u0444\u043e\u0440\u043c \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u044f. \u0422\u043e\u0432\u0430\u0440\u0438\u0449\u0438! \u043d\u043e\u0432\u0430\u044f \u043c\u043e\u0434\u0435\u043b\u044c \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u043e\u043d\u043d\u043e\u0439 \u0434\u0435\u044f\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438 \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u0442\u044c \u0432\u0430\u0436\u043d\u044b\u0435 \u0437\u0430\u0434\u0430\u043d\u0438\u044f \u043f\u043e \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0435 \u0441\u0438\u0441\u0442\u0435\u043c \u043c\u0430\u0441\u0441\u043e\u0432\u043e\u0433\u043e \u0443\u0447\u0430\u0441\u0442\u0438\u044f. \u0420\u0430\u0437\u043d\u043e\u043e\u0431\u0440\u0430\u0437\u043d\u044b\u0439 \u0438 \u0431\u043e\u0433\u0430\u0442\u044b\u0439 \u043e\u043f\u044b\u0442 \u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u044b\u0439 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439 \u0440\u043e\u0441\u0442 \u0438 \u0441\u0444\u0435\u0440\u0430 \u043d\u0430\u0448\u0435\u0439 \u0430\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u0438 \u0441\u043f\u043e\u0441\u043e\u0431\u0441\u0442\u0432\u0443\u0435\u0442 \u043f\u043e\u0434\u0433\u043e\u0442\u043e\u0432\u043a\u0438 \u0438 \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0438 \u0444\u043e\u0440\u043c \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u044f. \u041f\u043e\u0432\u0441\u0435\u0434\u043d\u0435\u0432\u043d\u0430\u044f \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0430 \u043f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442, \u0447\u0442\u043e \u0441\u043b\u043e\u0436\u0438\u0432\u0448\u0430\u044f\u0441\u044f \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438 \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u0441\u043e\u0431\u043e\u0439 \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u044b\u0439 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u0434\u0430\u043b\u044c\u043d\u0435\u0439\u0448\u0438\u0445 \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0439 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u044f.&lt;/p&gt;", "top_image": null, "locked": false, "owner": 1, "depth": 4, "administrator": null, "show_in_menus": false, "go_live_at": null, "pk": 7, "path": "0001000100020001"}</field>
+    <field name="approved_go_live_at" type="DateTimeField"><None></None></field>
+  </object>
+  <object model="wagtailcore.pagerevision" pk="7">
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">7</field>
+    <field name="submitted_for_moderation" type="BooleanField">False</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T15:21:00.887698+00:00</field>
+    <field name="user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="content_json" type="TextField">{"latest_revision_created_at": "2016-08-19T15:20:11.999Z", "search_description": "", "url_path": "/home/places/\u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0430-\u0446\u0435\u043d\u0442\u0440-\u0438\u043c-\u043c\u0435\u0439\u0435\u0440\u0445\u043e\u043b\u044c\u0434\u0430/", "expire_at": null, "slug": "meyerhold", "content_type": 12, "numchild": 0, "title": "\u041f\u043b\u043e\u0449\u0430\u0434\u043a\u0430 \u0426\u0435\u043d\u0442\u0440 \u0438\u043c. \u041c\u0435\u0439\u0435\u0440\u0445\u043e\u043b\u044c\u0434\u0430", "expired": false, "tel": "", "has_unpublished_changes": false, "address": "", "first_published_at": "2016-08-19T15:20:12.027Z", "live": true, "seo_title": "", "description": "&lt;h2&gt;\u0418\u0434\u0435\u0439\u043d\u044b\u0435 \u0441\u043e\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f&lt;/h2&gt;&lt;p&gt;\u0418\u0434\u0435\u0439\u043d\u044b\u0435 \u0441\u043e\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f \u0432\u044b\u0441\u0448\u0435\u0433\u043e \u043f\u043e\u0440\u044f\u0434\u043a\u0430, \u0430 \u0442\u0430\u043a\u0436\u0435 \u0443\u043a\u0440\u0435\u043f\u043b\u0435\u043d\u0438\u0435 \u0438 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u044b \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u0441\u043e\u0431\u043e\u0439 \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u044b\u0439 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0439 \u0443\u0441\u043b\u043e\u0432\u0438\u0439 \u0430\u043a\u0442\u0438\u0432\u0438\u0437\u0430\u0446\u0438\u0438. \u0420\u0430\u0432\u043d\u044b\u043c \u043e\u0431\u0440\u0430\u0437\u043e\u043c \u0443\u043a\u0440\u0435\u043f\u043b\u0435\u043d\u0438\u0435 \u0438 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u044b \u0442\u0440\u0435\u0431\u0443\u044e\u0442 \u043e\u0442 \u043d\u0430\u0441 \u0430\u043d\u0430\u043b\u0438\u0437\u0430 \u043f\u043e\u0437\u0438\u0446\u0438\u0439, \u0437\u0430\u043d\u0438\u043c\u0430\u0435\u043c\u044b\u0445 \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0430\u043c\u0438 \u0432 \u043e\u0442\u043d\u043e\u0448\u0435\u043d\u0438\u0438 \u043f\u043e\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u043d\u044b\u0445 \u0437\u0430\u0434\u0430\u0447. \u0420\u0430\u0437\u043d\u043e\u043e\u0431\u0440\u0430\u0437\u043d\u044b\u0439 \u0438 \u0431\u043e\u0433\u0430\u0442\u044b\u0439 \u043e\u043f\u044b\u0442 \u043a\u043e\u043d\u0441\u0443\u043b\u044c\u0442\u0430\u0446\u0438\u044f \u0441 \u0448\u0438\u0440\u043e\u043a\u0438\u043c \u0430\u043a\u0442\u0438\u0432\u043e\u043c \u0442\u0440\u0435\u0431\u0443\u044e\u0442 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u0438\u044f \u0438 \u0443\u0442\u043e\u0447\u043d\u0435\u043d\u0438\u044f \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0439 \u0443\u0441\u043b\u043e\u0432\u0438\u0439 \u0430\u043a\u0442\u0438\u0432\u0438\u0437\u0430\u0446\u0438\u0438. \u0422\u0430\u043a\u0438\u043c \u043e\u0431\u0440\u0430\u0437\u043e\u043c \u0434\u0430\u043b\u044c\u043d\u0435\u0439\u0448\u0435\u0435 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435 \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0445 \u0444\u043e\u0440\u043c \u0434\u0435\u044f\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438 \u0438\u0433\u0440\u0430\u0435\u0442 \u0432\u0430\u0436\u043d\u0443\u044e \u0440\u043e\u043b\u044c \u0432 \u0444\u043e\u0440\u043c\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0438 \u0444\u043e\u0440\u043c \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u044f. \u0417\u043d\u0430\u0447\u0438\u043c\u043e\u0441\u0442\u044c \u044d\u0442\u0438\u0445 \u043f\u0440\u043e\u0431\u043b\u0435\u043c \u043d\u0430\u0441\u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0447\u0435\u0432\u0438\u0434\u043d\u0430, \u0447\u0442\u043e \u043d\u0430\u0447\u0430\u043b\u043e \u043f\u043e\u0432\u0441\u0435\u0434\u043d\u0435\u0432\u043d\u043e\u0439 \u0440\u0430\u0431\u043e\u0442\u044b \u043f\u043e \u0444\u043e\u0440\u043c\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044e \u043f\u043e\u0437\u0438\u0446\u0438\u0438 \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u043e\u0446\u0435\u043d\u0438\u0442\u044c \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f \u043a\u0430\u0434\u0440\u043e\u0432, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442 \u043d\u0430\u0441\u0443\u0449\u043d\u044b\u043c \u043f\u043e\u0442\u0440\u0435\u0431\u043d\u043e\u0441\u0442\u044f\u043c.\u00a0&lt;/p&gt;&lt;p&gt;\u0421 \u0434\u0440\u0443\u0433\u043e\u0439 \u0441\u0442\u043e\u0440\u043e\u043d\u044b \u0440\u0430\u043c\u043a\u0438 \u0438 \u043c\u0435\u0441\u0442\u043e \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f \u043a\u0430\u0434\u0440\u043e\u0432 \u0441\u043f\u043e\u0441\u043e\u0431\u0441\u0442\u0432\u0443\u0435\u0442 \u043f\u043e\u0434\u0433\u043e\u0442\u043e\u0432\u043a\u0438 \u0438 \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0438 \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f \u043a\u0430\u0434\u0440\u043e\u0432, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442 \u043d\u0430\u0441\u0443\u0449\u043d\u044b\u043c \u043f\u043e\u0442\u0440\u0435\u0431\u043d\u043e\u0441\u0442\u044f\u043c. \u0417\u043d\u0430\u0447\u0438\u043c\u043e\u0441\u0442\u044c \u044d\u0442\u0438\u0445 \u043f\u0440\u043e\u0431\u043b\u0435\u043c \u043d\u0430\u0441\u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0447\u0435\u0432\u0438\u0434\u043d\u0430, \u0447\u0442\u043e \u0440\u0430\u043c\u043a\u0438 \u0438 \u043c\u0435\u0441\u0442\u043e \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f \u043a\u0430\u0434\u0440\u043e\u0432 \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u0441\u043e\u0431\u043e\u0439 \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u044b\u0439 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u0444\u043e\u0440\u043c \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u044f. \u0422\u043e\u0432\u0430\u0440\u0438\u0449\u0438! \u043d\u043e\u0432\u0430\u044f \u043c\u043e\u0434\u0435\u043b\u044c \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u043e\u043d\u043d\u043e\u0439 \u0434\u0435\u044f\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438 \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u0442\u044c \u0432\u0430\u0436\u043d\u044b\u0435 \u0437\u0430\u0434\u0430\u043d\u0438\u044f \u043f\u043e \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0435 \u0441\u0438\u0441\u0442\u0435\u043c \u043c\u0430\u0441\u0441\u043e\u0432\u043e\u0433\u043e \u0443\u0447\u0430\u0441\u0442\u0438\u044f. \u0420\u0430\u0437\u043d\u043e\u043e\u0431\u0440\u0430\u0437\u043d\u044b\u0439 \u0438 \u0431\u043e\u0433\u0430\u0442\u044b\u0439 \u043e\u043f\u044b\u0442 \u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u044b\u0439 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439 \u0440\u043e\u0441\u0442 \u0438 \u0441\u0444\u0435\u0440\u0430 \u043d\u0430\u0448\u0435\u0439 \u0430\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u0438 \u0441\u043f\u043e\u0441\u043e\u0431\u0441\u0442\u0432\u0443\u0435\u0442 \u043f\u043e\u0434\u0433\u043e\u0442\u043e\u0432\u043a\u0438 \u0438 \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0438 \u0444\u043e\u0440\u043c \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u044f. \u041f\u043e\u0432\u0441\u0435\u0434\u043d\u0435\u0432\u043d\u0430\u044f \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0430 \u043f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442, \u0447\u0442\u043e \u0441\u043b\u043e\u0436\u0438\u0432\u0448\u0430\u044f\u0441\u044f \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438 \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u0441\u043e\u0431\u043e\u0439 \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u044b\u0439 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u0434\u0430\u043b\u044c\u043d\u0435\u0439\u0448\u0438\u0445 \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0439 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u044f.&lt;/p&gt;", "top_image": null, "locked": false, "owner": 1, "depth": 4, "administrator": null, "show_in_menus": false, "go_live_at": null, "pk": 7, "path": "0001000100020001"}</field>
+    <field name="approved_go_live_at" type="DateTimeField"><None></None></field>
+  </object>
+  <object model="wagtailcore.pagerevision" pk="8">
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">8</field>
+    <field name="submitted_for_moderation" type="BooleanField">False</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T15:24:11.500914+00:00</field>
+    <field name="user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="content_json" type="TextField">{"title": "\u0420\u0413\u0414\u0411 (\u043c. \u041e\u043a\u0442\u044f\u0431\u0440\u044c\u0441\u043a\u0430\u044f)", "content_type": 12, "numchild": 0, "address": "", "expire_at": null, "url_path": "/home/places/rgdb/", "search_description": "", "seo_title": "", "has_unpublished_changes": false, "tel": "", "administrator": null, "show_in_menus": false, "live": true, "locked": false, "owner": 1, "go_live_at": null, "expired": false, "description": "&lt;p&gt;\u0420\u043e\u0441\u0441\u0438\u0439\u0441\u043a\u0430\u044f \u0433\u043e\u0441\u0443\u0434\u0430\u0440\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u0434\u0435\u0442\u0441\u043a\u0430\u044f \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430 \u043a\u0440\u0443\u043f\u043d\u0435\u0439\u0448\u0430\u044f \u0432 \u043c\u0438\u0440\u0435 \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430 \u0434\u043b\u044f \u0434\u0435\u0442\u0435\u0439. \u041e\u0441\u043d\u043e\u0432\u0430\u043d\u0430 \u0432 30 \u0434\u0435\u043a\u0430\u0431\u0440\u044f 1969 \u0433\u043e\u0434\u0430 \u043f\u043e \u043f\u0440\u0438\u043a\u0430\u0437\u0443 \u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430 \u043a\u0443\u043b\u044c\u0442\u0443\u0440\u044b \u0420\u0421\u0424\u0421\u0420. \u0411\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430 \u0441\u0435\u0433\u043e\u0434\u043d\u044f \u2013 \u044d\u0442\u043e: \u043a\u0443\u043b\u044c\u0442\u0443\u0440\u043d\u043e-\u043f\u0440\u043e\u0441\u0432\u0435\u0442\u0438\u0442\u0435\u043b\u044c\u0441\u043a\u0438\u0439 \u0446\u0435\u043d\u0442\u0440 \u0434\u043b\u044f \u0434\u0435\u0442\u0435\u0439 \u0438 \u0438\u0445 \u0440\u043e\u0434\u0438\u0442\u0435\u043b\u0435\u0439; \u043d\u0430\u0443\u0447\u043d\u043e-\u043c\u0435\u0442\u043e\u0434\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0438 \u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u0441\u043a\u0438\u0439 \u0446\u0435\u043d\u0442\u0440 \u0432 \u043e\u0431\u043b\u0430\u0441\u0442\u0438 \u043f\u0435\u0434\u0430\u0433\u043e\u0433\u0438\u043a\u0438, \u043f\u0441\u0438\u0445\u043e\u043b\u043e\u0433\u0438\u0438 \u0438 \u0441\u043e\u0446\u0438\u043e\u043b\u043e\u0433\u0438\u0438 \u0434\u0435\u0442\u0441\u043a\u043e\u0433\u043e \u0447\u0442\u0435\u043d\u0438\u044f; \u044e\u0440\u0438\u0434\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u043a\u043e\u043d\u0441\u0443\u043b\u044c\u0442\u0430\u0446\u0438\u043e\u043d\u043d\u044b\u0439 \u0446\u0435\u043d\u0442\u0440; \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u043e\u043d\u043d\u044b\u0439 \u043f\u0430\u0440\u0442\u043d\u0435\u0440 \u043e\u0431\u043b\u0430\u0441\u0442\u043d\u044b\u0445 \u0438 \u0444\u0435\u0434\u0435\u0440\u0430\u043b\u044c\u043d\u044b\u0445 \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a, \u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u0441\u043a\u0438\u0445 \u0438 \u043e\u0431\u0440\u0430\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0445 \u0446\u0435\u043d\u0442\u0440\u043e\u0432, \u043c\u0435\u0436\u0434\u0443\u043d\u0430\u0440\u043e\u0434\u043d\u044b\u0445 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0439, \u0434\u0435\u0442\u0441\u043a\u0438\u0445 \u0438 \u043f\u0435\u0434\u0430\u0433\u043e\u0433\u0438\u0447\u0435\u0441\u043a\u0438\u0445 \u0433\u0430\u0437\u0435\u0442 \u0438 \u0436\u0443\u0440\u043d\u0430\u043b\u043e\u0432.&lt;/p&gt;", "top_image": null, "first_published_at": null, "depth": 4, "latest_revision_created_at": null, "path": "0001000100020002", "slug": "rgdb", "pk": 8}</field>
+    <field name="approved_go_live_at" type="DateTimeField"><None></None></field>
+  </object>
+  <object model="wagtailcore.pagerevision" pk="9">
+    <field name="page" rel="ManyToOneRel" to="wagtailcore.page">9</field>
+    <field name="submitted_for_moderation" type="BooleanField">False</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T15:25:35.493725+00:00</field>
+    <field name="user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="content_json" type="TextField">{"title": "\u0412\u043e\u0434\u0430", "content_type": 11, "numchild": 0, "expire_at": null, "url_path": "/home/performances/\u0432\u043e\u0434\u0430/", "search_description": "", "seo_title": "", "has_unpublished_changes": false, "video": null, "show_in_menus": false, "live": true, "locked": false, "owner": 1, "go_live_at": null, "description": "&lt;p&gt;\u041c\u044b, \u043f\u043e\u0447\u0442\u0438 \u0431\u0435\u0437 \u0441\u043b\u043e\u0432, \u0440\u0430\u0441\u0441\u043a\u0430\u0436\u0435\u043c \u0432\u0430\u043c \u043e \u043c\u043e\u0440\u044f\u0445, \u043a\u043e\u0440\u0430\u0431\u043b\u044f\u0445, \u0440\u0430\u043a\u0443\u0448\u043a\u0430\u0445, \u0432\u044b \u043f\u043e\u0437\u043d\u0430\u043a\u043e\u043c\u0438\u0442\u0435\u0441\u044c \u0441 \u0433\u043b\u0430\u0432\u043d\u044b\u043c \u0433\u0435\u0440\u043e\u0435\u043c \u0440\u0430\u043a\u043e\u043c-\u043e\u0442\u0448\u0435\u043b\u044c\u043d\u0438\u043a\u043e\u043c, \u043c\u044b \u0432\u0441\u0435 \u0432\u044b\u043c\u043e\u043a\u043d\u0435\u043c \u043f\u043e\u0434 \u043f\u0440\u043e\u043b\u0438\u0432\u043d\u044b\u043c\u0438 \u0434\u043e\u0436\u0434\u044f\u043c\u0438 \u0438 \u043f\u043e\u0433\u0443\u043b\u044f\u0435\u043c \u043f\u043e \u043c\u043e\u0440\u044f\u043c! \u041d\u0435 \u0437\u0430\u0431\u044b\u0432\u0430\u0439\u0442\u0435 \u0437\u0430\u043f\u0430\u0441\u043d\u0443\u044e \u043e\u0434\u0435\u0436\u0434\u0443 \u0438 \u043e\u0431\u0443\u0432\u044c. \u0414\u043e \u0432\u0441\u0442\u0440\u0435\u0447\u0438!&lt;/p&gt;", "expired": false, "subtitle": "\u041f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c 40 \u043c\u0438\u043d\u0443\u0442", "top_image": 6, "first_published_at": null, "gallery_items": [], "depth": 4, "latest_revision_created_at": null, "path": "0001000100010002", "slug": "\u0432\u043e\u0434\u0430", "pk": 9}</field>
+    <field name="approved_go_live_at" type="DateTimeField"><None></None></field>
+  </object>
+  <object model="wagtailcore.page" pk="1">
+    <field name="path" type="CharField">0001</field>
+    <field name="depth" type="PositiveIntegerField">1</field>
+    <field name="numchild" type="PositiveIntegerField">1</field>
+    <field name="title" type="CharField">Root</field>
+    <field name="slug" type="SlugField">root</field>
+    <field name="content_type" rel="ManyToOneRel" to="contenttypes.contenttype">1</field>
+    <field name="live" type="BooleanField">True</field>
+    <field name="has_unpublished_changes" type="BooleanField">False</field>
+    <field name="url_path" type="TextField">/</field>
+    <field name="owner" rel="ManyToOneRel" to="auth.user"><None></None></field>
+    <field name="seo_title" type="CharField"></field>
+    <field name="show_in_menus" type="BooleanField">False</field>
+    <field name="search_description" type="TextField"></field>
+    <field name="go_live_at" type="DateTimeField"><None></None></field>
+    <field name="expire_at" type="DateTimeField"><None></None></field>
+    <field name="expired" type="BooleanField">False</field>
+    <field name="locked" type="BooleanField">False</field>
+    <field name="first_published_at" type="DateTimeField"><None></None></field>
+    <field name="latest_revision_created_at" type="DateTimeField"><None></None></field>
+  </object>
+  <object model="wagtailcore.page" pk="3">
+    <field name="path" type="CharField">00010001</field>
+    <field name="depth" type="PositiveIntegerField">2</field>
+    <field name="numchild" type="PositiveIntegerField">2</field>
+    <field name="title" type="CharField">Homepage</field>
+    <field name="slug" type="SlugField">home</field>
+    <field name="content_type" rel="ManyToOneRel" to="contenttypes.contenttype">2</field>
+    <field name="live" type="BooleanField">True</field>
+    <field name="has_unpublished_changes" type="BooleanField">False</field>
+    <field name="url_path" type="TextField">/home/</field>
+    <field name="owner" rel="ManyToOneRel" to="auth.user"><None></None></field>
+    <field name="seo_title" type="CharField"></field>
+    <field name="show_in_menus" type="BooleanField">False</field>
+    <field name="search_description" type="TextField"></field>
+    <field name="go_live_at" type="DateTimeField"><None></None></field>
+    <field name="expire_at" type="DateTimeField"><None></None></field>
+    <field name="expired" type="BooleanField">False</field>
+    <field name="locked" type="BooleanField">False</field>
+    <field name="first_published_at" type="DateTimeField"><None></None></field>
+    <field name="latest_revision_created_at" type="DateTimeField"><None></None></field>
+  </object>
+  <object model="wagtailcore.page" pk="4">
+    <field name="path" type="CharField">000100010001</field>
+    <field name="depth" type="PositiveIntegerField">3</field>
+    <field name="numchild" type="PositiveIntegerField">2</field>
+    <field name="title" type="CharField">Спектакли</field>
+    <field name="slug" type="SlugField">performances</field>
+    <field name="content_type" rel="ManyToOneRel" to="contenttypes.contenttype">14</field>
+    <field name="live" type="BooleanField">True</field>
+    <field name="has_unpublished_changes" type="BooleanField">False</field>
+    <field name="url_path" type="TextField">/home/performances/</field>
+    <field name="owner" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="seo_title" type="CharField"></field>
+    <field name="show_in_menus" type="BooleanField">True</field>
+    <field name="search_description" type="TextField"></field>
+    <field name="go_live_at" type="DateTimeField"><None></None></field>
+    <field name="expire_at" type="DateTimeField"><None></None></field>
+    <field name="expired" type="BooleanField">False</field>
+    <field name="locked" type="BooleanField">False</field>
+    <field name="first_published_at" type="DateTimeField">2016-08-19T14:52:33.266275+00:00</field>
+    <field name="latest_revision_created_at" type="DateTimeField">2016-08-19T14:53:49.146055+00:00</field>
+  </object>
+  <object model="wagtailcore.page" pk="5">
+    <field name="path" type="CharField">000100010002</field>
+    <field name="depth" type="PositiveIntegerField">3</field>
+    <field name="numchild" type="PositiveIntegerField">2</field>
+    <field name="title" type="CharField">Площадки</field>
+    <field name="slug" type="SlugField">places</field>
+    <field name="content_type" rel="ManyToOneRel" to="contenttypes.contenttype">13</field>
+    <field name="live" type="BooleanField">True</field>
+    <field name="has_unpublished_changes" type="BooleanField">False</field>
+    <field name="url_path" type="TextField">/home/places/</field>
+    <field name="owner" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="seo_title" type="CharField"></field>
+    <field name="show_in_menus" type="BooleanField">True</field>
+    <field name="search_description" type="TextField"></field>
+    <field name="go_live_at" type="DateTimeField"><None></None></field>
+    <field name="expire_at" type="DateTimeField"><None></None></field>
+    <field name="expired" type="BooleanField">False</field>
+    <field name="locked" type="BooleanField">False</field>
+    <field name="first_published_at" type="DateTimeField">2016-08-19T14:52:48.306590+00:00</field>
+    <field name="latest_revision_created_at" type="DateTimeField">2016-08-19T14:54:04.138512+00:00</field>
+  </object>
+  <object model="wagtailcore.page" pk="6">
+    <field name="path" type="CharField">0001000100010001</field>
+    <field name="depth" type="PositiveIntegerField">4</field>
+    <field name="numchild" type="PositiveIntegerField">0</field>
+    <field name="title" type="CharField">Снег</field>
+    <field name="slug" type="SlugField">снег</field>
+    <field name="content_type" rel="ManyToOneRel" to="contenttypes.contenttype">11</field>
+    <field name="live" type="BooleanField">True</field>
+    <field name="has_unpublished_changes" type="BooleanField">False</field>
+    <field name="url_path" type="TextField">/home/performances/снег/</field>
+    <field name="owner" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="seo_title" type="CharField"></field>
+    <field name="show_in_menus" type="BooleanField">False</field>
+    <field name="search_description" type="TextField"></field>
+    <field name="go_live_at" type="DateTimeField"><None></None></field>
+    <field name="expire_at" type="DateTimeField"><None></None></field>
+    <field name="expired" type="BooleanField">False</field>
+    <field name="locked" type="BooleanField">False</field>
+    <field name="first_published_at" type="DateTimeField">2016-08-19T15:05:06.608775+00:00</field>
+    <field name="latest_revision_created_at" type="DateTimeField">2016-08-19T15:05:06.579738+00:00</field>
+  </object>
+  <object model="wagtailcore.page" pk="7">
+    <field name="path" type="CharField">0001000100020001</field>
+    <field name="depth" type="PositiveIntegerField">4</field>
+    <field name="numchild" type="PositiveIntegerField">0</field>
+    <field name="title" type="CharField">Площадка Центр им. Мейерхольда</field>
+    <field name="slug" type="SlugField">meyerhold</field>
+    <field name="content_type" rel="ManyToOneRel" to="contenttypes.contenttype">12</field>
+    <field name="live" type="BooleanField">True</field>
+    <field name="has_unpublished_changes" type="BooleanField">False</field>
+    <field name="url_path" type="TextField">/home/places/meyerhold/</field>
+    <field name="owner" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="seo_title" type="CharField"></field>
+    <field name="show_in_menus" type="BooleanField">False</field>
+    <field name="search_description" type="TextField"></field>
+    <field name="go_live_at" type="DateTimeField"><None></None></field>
+    <field name="expire_at" type="DateTimeField"><None></None></field>
+    <field name="expired" type="BooleanField">False</field>
+    <field name="locked" type="BooleanField">False</field>
+    <field name="first_published_at" type="DateTimeField">2016-08-19T15:20:12.027130+00:00</field>
+    <field name="latest_revision_created_at" type="DateTimeField">2016-08-19T15:21:00.887698+00:00</field>
+  </object>
+  <object model="wagtailcore.page" pk="8">
+    <field name="path" type="CharField">0001000100020002</field>
+    <field name="depth" type="PositiveIntegerField">4</field>
+    <field name="numchild" type="PositiveIntegerField">0</field>
+    <field name="title" type="CharField">РГДБ (м. Октябрьская)</field>
+    <field name="slug" type="SlugField">rgdb</field>
+    <field name="content_type" rel="ManyToOneRel" to="contenttypes.contenttype">12</field>
+    <field name="live" type="BooleanField">True</field>
+    <field name="has_unpublished_changes" type="BooleanField">False</field>
+    <field name="url_path" type="TextField">/home/places/rgdb/</field>
+    <field name="owner" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="seo_title" type="CharField"></field>
+    <field name="show_in_menus" type="BooleanField">False</field>
+    <field name="search_description" type="TextField"></field>
+    <field name="go_live_at" type="DateTimeField"><None></None></field>
+    <field name="expire_at" type="DateTimeField"><None></None></field>
+    <field name="expired" type="BooleanField">False</field>
+    <field name="locked" type="BooleanField">False</field>
+    <field name="first_published_at" type="DateTimeField">2016-08-19T15:24:11.518102+00:00</field>
+    <field name="latest_revision_created_at" type="DateTimeField">2016-08-19T15:24:11.500914+00:00</field>
+  </object>
+  <object model="wagtailcore.page" pk="9">
+    <field name="path" type="CharField">0001000100010002</field>
+    <field name="depth" type="PositiveIntegerField">4</field>
+    <field name="numchild" type="PositiveIntegerField">0</field>
+    <field name="title" type="CharField">Вода</field>
+    <field name="slug" type="SlugField">вода</field>
+    <field name="content_type" rel="ManyToOneRel" to="contenttypes.contenttype">11</field>
+    <field name="live" type="BooleanField">True</field>
+    <field name="has_unpublished_changes" type="BooleanField">False</field>
+    <field name="url_path" type="TextField">/home/performances/вода/</field>
+    <field name="owner" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="seo_title" type="CharField"></field>
+    <field name="show_in_menus" type="BooleanField">False</field>
+    <field name="search_description" type="TextField"></field>
+    <field name="go_live_at" type="DateTimeField"><None></None></field>
+    <field name="expire_at" type="DateTimeField"><None></None></field>
+    <field name="expired" type="BooleanField">False</field>
+    <field name="locked" type="BooleanField">False</field>
+    <field name="first_published_at" type="DateTimeField">2016-08-19T15:25:35.525879+00:00</field>
+    <field name="latest_revision_created_at" type="DateTimeField">2016-08-19T15:25:35.493725+00:00</field>
+  </object>
+  <object model="wagtailimages.image" pk="1">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">2.jpeg</field>
+    <field name="file" type="FileField">original_images/2.jpeg</field>
+    <field name="width" type="IntegerField">704</field>
+    <field name="height" type="IntegerField">504</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:38.203281+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">55196</field>
+  </object>
+  <object model="wagtailimages.image" pk="2">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">11.jpeg</field>
+    <field name="file" type="FileField">original_images/11.jpeg</field>
+    <field name="width" type="IntegerField">703</field>
+    <field name="height" type="IntegerField">709</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:38.320143+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">135028</field>
+  </object>
+  <object model="wagtailimages.image" pk="3">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">12.jpeg</field>
+    <field name="file" type="FileField">original_images/12.jpeg</field>
+    <field name="width" type="IntegerField">800</field>
+    <field name="height" type="IntegerField">533</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:38.419249+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">108739</field>
+  </object>
+  <object model="wagtailimages.image" pk="4">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">13.jpeg</field>
+    <field name="file" type="FileField">original_images/13.jpeg</field>
+    <field name="width" type="IntegerField">800</field>
+    <field name="height" type="IntegerField">533</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:38.519375+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">63116</field>
+  </object>
+  <object model="wagtailimages.image" pk="5">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">14.jpeg</field>
+    <field name="file" type="FileField">original_images/14.jpeg</field>
+    <field name="width" type="IntegerField">900</field>
+    <field name="height" type="IntegerField">600</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:38.633833+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">111653</field>
+  </object>
+  <object model="wagtailimages.image" pk="6">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">15.jpeg</field>
+    <field name="file" type="FileField">original_images/15.jpeg</field>
+    <field name="width" type="IntegerField">800</field>
+    <field name="height" type="IntegerField">533</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:38.724788+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">134230</field>
+  </object>
+  <object model="wagtailimages.image" pk="7">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">16.jpeg</field>
+    <field name="file" type="FileField">original_images/16.jpeg</field>
+    <field name="width" type="IntegerField">678</field>
+    <field name="height" type="IntegerField">960</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:38.813907+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">176302</field>
+  </object>
+  <object model="wagtailimages.image" pk="8">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">17.jpeg</field>
+    <field name="file" type="FileField">original_images/17.jpeg</field>
+    <field name="width" type="IntegerField">704</field>
+    <field name="height" type="IntegerField">504</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:38.900943+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">97454</field>
+  </object>
+  <object model="wagtailimages.image" pk="9">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">18.jpeg</field>
+    <field name="file" type="FileField">original_images/18.jpeg</field>
+    <field name="width" type="IntegerField">960</field>
+    <field name="height" type="IntegerField">720</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:39.000560+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">102071</field>
+  </object>
+  <object model="wagtailimages.image" pk="10">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">19.jpeg</field>
+    <field name="file" type="FileField">original_images/19.jpeg</field>
+    <field name="width" type="IntegerField">960</field>
+    <field name="height" type="IntegerField">678</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:39.086253+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">159188</field>
+  </object>
+  <object model="wagtailimages.image" pk="11">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">fb-logo.png</field>
+    <field name="file" type="FileField">original_images/fb-logo.png</field>
+    <field name="width" type="IntegerField">150</field>
+    <field name="height" type="IntegerField">150</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:39.158898+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">595</field>
+  </object>
+  <object model="wagtailimages.image" pk="12">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">gplus-logo.jpg</field>
+    <field name="file" type="FileField">original_images/gplus-logo.jpg</field>
+    <field name="width" type="IntegerField">100</field>
+    <field name="height" type="IntegerField">100</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:39.235984+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">3514</field>
+  </object>
+  <object model="wagtailimages.image" pk="13">
+    <field name="collection" rel="ManyToOneRel" to="wagtailcore.collection">1</field>
+    <field name="title" type="CharField">vk-logo.png</field>
+    <field name="file" type="FileField">original_images/vk-logo.png</field>
+    <field name="width" type="IntegerField">150</field>
+    <field name="height" type="IntegerField">150</field>
+    <field name="created_at" type="DateTimeField">2016-08-19T14:58:39.298369+00:00</field>
+    <field name="uploaded_by_user" rel="ManyToOneRel" to="auth.user">1</field>
+    <field name="focal_point_x" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_y" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_width" type="PositiveIntegerField"><None></None></field>
+    <field name="focal_point_height" type="PositiveIntegerField"><None></None></field>
+    <field name="file_size" type="PositiveIntegerField">1969</field>
+  </object>
+  <object model="home.homepage" pk="3">
+  </object>
+  <object model="theatre.placeindex" pk="5">
+    <field name="intro" type="CharField">Наши площадки</field>
+  </object>
+  <object model="theatre.performanceindex" pk="4">
+    <field name="intro" type="CharField">Наши спектакли</field>
+  </object>
+  <object model="theatre.place" pk="7">
+    <field name="description" type="TextField">&lt;h2&gt;Идейные соображения&lt;/h2&gt;&lt;p&gt;Идейные соображения высшего порядка, а также укрепление и развитие структуры представляет собой интересный эксперимент проверки соответствующий условий активизации. Равным образом укрепление и развитие структуры требуют от нас анализа позиций, занимаемых участниками в отношении поставленных задач. Разнообразный и богатый опыт консультация с широким активом требуют определения и уточнения соответствующий условий активизации. Таким образом дальнейшее развитие различных форм деятельности играет важную роль в формировании форм развития. Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции позволяет оценить значение системы обучения кадров, соответствует насущным потребностям. &lt;/p&gt;&lt;p&gt;С другой стороны рамки и место обучения кадров способствует подготовки и реализации системы обучения кадров, соответствует насущным потребностям. Значимость этих проблем настолько очевидна, что рамки и место обучения кадров представляет собой интересный эксперимент проверки форм развития. Товарищи! новая модель организационной деятельности позволяет выполнять важные задания по разработке систем массового участия. Разнообразный и богатый опыт постоянный количественный рост и сфера нашей активности способствует подготовки и реализации форм развития. Повседневная практика показывает, что сложившаяся структура организации представляет собой интересный эксперимент проверки дальнейших направлений развития.&lt;/p&gt;</field>
+    <field name="top_image" rel="ManyToOneRel" to="wagtailimages.image"><None></None></field>
+    <field name="address" type="CharField"></field>
+    <field name="tel" type="CharField"></field>
+    <field name="administrator" rel="ManyToOneRel" to="theatre.placeadministrator"><None></None></field>
+  </object>
+  <object model="theatre.place" pk="8">
+    <field name="description" type="TextField">&lt;p&gt;Российская государственная детская библиотека крупнейшая в мире библиотека для детей. Основана в 30 декабря 1969 года по приказу министра культуры РСФСР. Библиотека сегодня – это: культурно-просветительский центр для детей и их родителей; научно-методический и исследовательский центр в области педагогики, психологии и социологии детского чтения; юридический консультационный центр; информационный партнер областных и федеральных библиотек, исследовательских и образовательных центров, международных организаций, детских и педагогических газет и журналов.&lt;/p&gt;</field>
+    <field name="top_image" rel="ManyToOneRel" to="wagtailimages.image"><None></None></field>
+    <field name="address" type="CharField"></field>
+    <field name="tel" type="CharField"></field>
+    <field name="administrator" rel="ManyToOneRel" to="theatre.placeadministrator"><None></None></field>
+  </object>
+  <object model="theatre.performance" pk="6">
+    <field name="subtitle" type="CharField">Спектакль про снег</field>
+    <field name="top_image" rel="ManyToOneRel" to="wagtailimages.image">5</field>
+    <field name="video" rel="ManyToOneRel" to="theatre.youtubeembedsnippet"><None></None></field>
+    <field name="description" type="TextField">&lt;h2&gt;Ваш шедевр готов!&lt;/h2&gt;&lt;p&gt;Таким образом консультация с широким активом требуют определения и уточнения соответствующий условий активизации. Таким образом постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки дальнейших направлений развития. &lt;/p&gt;&lt;p&gt;Таким образом начало повседневной работы по формированию позиции обеспечивает широкому кругу (специалистов) участие в формировании системы обучения кадров, соответствует насущным потребностям. Равным образом постоянный количественный рост и сфера нашей активности требуют от нас анализа направлений прогрессивного развития. Идейные соображения высшего порядка, а также сложившаяся структура организации требуют от нас анализа новых предложений. Таким образом постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям.&lt;/p&gt;</field>
+  </object>
+  <object model="theatre.performance" pk="9">
+    <field name="subtitle" type="CharField">Продолжительность 40 минут</field>
+    <field name="top_image" rel="ManyToOneRel" to="wagtailimages.image">6</field>
+    <field name="video" rel="ManyToOneRel" to="theatre.youtubeembedsnippet"><None></None></field>
+    <field name="description" type="TextField">&lt;p&gt;Мы, почти без слов, расскажем вам о морях, кораблях, ракушках, вы познакомитесь с главным героем раком-отшельником, мы все вымокнем под проливными дождями и погуляем по морям! Не забывайте запасную одежду и обувь. До встречи!&lt;/p&gt;</field>
+  </object>
+</django-objects>

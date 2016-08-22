@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from django.conf import settings
 from django.contrib import admin
+from django.views.decorators.csrf import csrf_exempt
 
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
@@ -8,6 +9,10 @@ from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.contrib.wagtailapi import urls as wagtailapi_urls
 
 from search import views as search_views
+
+from graphene.contrib.django.views import GraphQLView
+
+from wag_ftheatre.schema import schema
 
 
 urlpatterns = [
@@ -19,6 +24,8 @@ urlpatterns = [
     url(r'^search/$', search_views.search, name='search'),
 
     url(r'^api/', include(wagtailapi_urls)),
+    url(r'^graphql', csrf_exempt(GraphQLView.as_view(schema=schema))),
+    url(r'^graphiql', include('django_graphiql.urls')),
     url(r'', include(wagtail_urls)),
 ]
 

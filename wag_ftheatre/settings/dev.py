@@ -14,6 +14,38 @@ SECRET_KEY = '-_eke9u#g!d712zgfnb1)v9a42yno6)!y6pfm6%1j-!95%#7u('
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'django.db.backends': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+        },
+        'reservations.tests': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'reservations.schema': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
+
+DATABASES['default']['TEST'] = {
+    'NAME': 'mytestdb'
+}
+
 try:
     from .local import *
 except ImportError:

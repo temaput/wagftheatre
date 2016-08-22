@@ -25,6 +25,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = [
     'theatre',
+    'reservations',
     'home',
     'search',
 
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'compressor',
     'taggit',
     'rest_framework',
+    'django_graphiql',
 
     'django.contrib.admin',
     'django.contrib.auth',
