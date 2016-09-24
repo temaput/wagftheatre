@@ -32,21 +32,26 @@ import logging
 log = logging.getLogger(__name__)
 
 
-
 class ScheduledPManager(PageManager):
+
+    def available_filter(self):
+        return {
+            'shows_scheduled__showtime__gte': timezone.localtime(
+                timezone.now()).date(),
+            'shows_scheduled__sold_out': False,
+        }
+
     def get_queryset(self):
         return super(ScheduledPManager, self).get_queryset().filter(
-            shows_scheduled__showtime__gte=timezone.localtime(
-                timezone.now()).date(),
-            shows_scheduled__sold_out=False,
+            **self.available_filter()
         ).distinct()
 
-    def resolve_p2p(self, qs, pkey, p_id=None, p_slug=None):
-        kwargs = {}
-        if p_id is not None:
-            kwargs['shows_scheduled__%s' % pkey] = p_id
+    def resolve_p2p(self, qs, pkey, pk=None, slug=None):
+        kwargs = self.available_filter()
+        if pk is not None:
+            kwargs['shows_scheduled__%s' % pkey] = pk
         else:
-            kwargs['shows_scheduled__%s__slug' % pkey] = p_slug
+            kwargs['shows_scheduled__%s__slug' % pkey] = slug
         log.debug("resolve_p2p kwargs: %s", kwargs)
         return qs.filter(**kwargs).distinct()
 
@@ -55,24 +60,22 @@ class ScheduledPerformanceManager(ScheduledPManager):
 
     def by_place_field(self, **kwargs):
         qs = self.get_queryset()
-        kwargs_new = {'p_%s' % k: kwargs[k] for k in kwargs}
-        return self.resolve_p2p(qs, 'place', **kwargs_new)
+        return self.resolve_p2p(qs, 'place', **kwargs)
 
     def by_place(self, place):
         qs = self.get_queryset()
-        return self.resolve_p2p(qs, 'place', p_id=place)
+        return self.resolve_p2p(qs, 'place', pk=place)
 
 
 class ScheduledPlaceManager(ScheduledPManager):
 
     def by_performance_field(self, **kwargs):
         qs = self.get_queryset()
-        kwargs_new = {'p_%s' % k: kwargs[k] for k in kwargs}
-        return self.resolve_p2p(qs, 'performance', **kwargs_new)
+        return self.resolve_p2p(qs, 'performance', **kwargs)
 
     def by_performance(self, performance):
         qs = self.get_queryset()
-        return self.resolve_p2p(qs, 'performance', p_id=performance)
+        return self.resolve_p2p(qs, 'performance', pk=performance)
 
 
 class Performance(Page):

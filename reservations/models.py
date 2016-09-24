@@ -6,11 +6,10 @@ from __future__ import unicode_literals
 
 
 
-from datetime import timedelta
 
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
-from django.utils import timezone
+from django.utils import timezone as tz
 from django.core.urlresolvers import reverse
 from django.conf import settings
 
@@ -28,8 +27,6 @@ class Spectator(models.Model):
     - моб. тел.
     - мэйл*
     - дата регистрации
-    - дети -> Children
-    - как узнали -> Promo
     """
     first_name = models.CharField("Имя", max_length=50,
             blank=True)
@@ -46,11 +43,12 @@ class Spectator(models.Model):
             help_text="Укажите возраст и имена детей")
 
     user = models.OneToOneField(
-            settings.AUTH_USER_MODEL,
-            verbose_name="Зритель зарегистрирован как",
-            blank=True,
-            null=True,
-            )
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name="Зритель зарегистрирован как",
+        blank=True,
+        null=True,
+    )
 
 
     def __str__(self):
@@ -65,6 +63,7 @@ class Spectator(models.Model):
         verbose_name = "Зритель"
         verbose_name_plural = "Зрители"
 
+
 class AvailableScheduleManager(models.Manager):
     """
     Manager that returns only rows that are not outdated and not sold
@@ -72,7 +71,7 @@ class AvailableScheduleManager(models.Manager):
 
     def get_queryset(self):
         return super(AvailableScheduleManager, self).get_queryset().filter(
-                showtime__gte=timezone.now(),
+                showtime__gte=tz.localtime(tz.now()).date(),
                 sold_out=False,
                 )
 
@@ -126,7 +125,7 @@ class Schedule(models.Model):
 
     @property
     def is_available(self):
-        return not self.sold_out and self.showtime >= timezone.now()
+        return not self.sold_out and self.showtime >= tz.now()
 
 
     def reservations_made(self):
@@ -174,31 +173,36 @@ class Reservation(models.Model):
     - Дополнительно детских мест* (0)
     """
     spectator = models.ForeignKey(Spectator, verbose_name="Зритель")
-    reservation_date = models.DateTimeField("Дата бронирования", auto_now_add=True)
-    show = models.ForeignKey(Schedule, verbose_name="Показ",
-            related_name="reservations")
-    seating_adult = models.PositiveSmallIntegerField("Дополнительные места (взр)",
-            default=0)
-    seating_child = models.PositiveSmallIntegerField("Дополнительные места (детск)",
-            default=0)
+    reservation_date = models.DateTimeField(
+        "Дата бронирования", auto_now_add=True)
+    show = models.ForeignKey(
+        Schedule, verbose_name="Показ",
+        related_name="reservations")
+    seating_adult = models.PositiveSmallIntegerField(
+        "Дополнительные места (взр)",
+        default=0)
+    seating_child = models.PositiveSmallIntegerField(
+        "Дополнительные места (детск)", default=0)
     settled = models.BooleanField("Бронь выкуплена", default=False)
-    cancelled = models.BooleanField("Бронь отменена", default=False,
-            help_text="Установите галочку, чтобы отменить просроченную бронь"
-            "и отправить автоматическое уведомление",
-            )
-    additional_info = models.TextField("Комментарии к бронированию",
-            blank=True,
-            help_text="Дополнительные сведения, пожелания...")
+    cancelled = models.BooleanField(
+        "Бронь отменена", default=False,
+        help_text=("Установите галочку, чтобы отменить просроченную бронь"
+                   "и отправить автоматическое уведомление"),
+    )
+    additional_info = models.TextField(
+        "Комментарии к бронированию",
+        blank=True,
+        help_text="Дополнительные сведения, пожелания...")
 
     def expired(self):
-        return (not self.settled) and timezone.now() >= self.expires
+        return (not self.settled) and tz.localtime(tz.now()) >= self.expires
     expired.short_description = "Бронь просрочена"
     expired.boolean = True
     expired = property(expired)
 
     def expires(self):
-        return self.show.showtime - timedelta(
-                settings.RESERVATIONS_EXPIRES_BEFORE
+        return self.show.showtime - tz.timedelta(
+                getattr(settings, "RESERVATIONS_EXPIRES_BEFORE", 0)
                 )
     expires.short_description = "Выкуп брони до"
     expires = property(expires)
