@@ -1,6 +1,5 @@
 from django import forms
-
-from .models import Spectator
+from reservations.models import Reservation
 
 
 class ScheduleFilterForm(forms.Form):
@@ -12,8 +11,11 @@ class ScheduleFilterForm(forms.Form):
     showtime_gte = forms.DateField()
 
 
-class SpectatorModelForm(forms.ModelForm):
-
+class ReservationForm(forms.ModelForm):
     class Meta:
-        model = Spectator
-        exclude = ['registered']
+        model = Reservation
+        exclude = [
+            'reservation_date',
+            'settled',
+            'cancelled',
+        ]

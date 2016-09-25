@@ -1,8 +1,9 @@
 from django.test import TestCase
 from theatre.models import Performance, Place
-from reservations.models import Schedule, Spectator
+from reservations.models import Schedule
 from reservations.schema import PlaceNode, PerformanceNode, ScheduleNode
-from reservations.forms import SpectatorModelForm
+from reservations.forms import ReservationForm
+from reservations.tests_mock_data import MockData
 from wag_ftheatre.schema import schema
 
 from django.utils import timezone as tz
@@ -780,69 +781,58 @@ class ScheduleSchemaTestCase(TestCase):
             "Available shows should equal to gte today"
         )
 
-class SpectatorFormTestCase(TestCase):
+
+class ReservationFormTestCase(TestCase):
+
+    fixtures = ['fixture1.xml']
 
     def setUp(self):
-        # create one Spectator
-        self.mock_data = {}
-        self.mock_data['john'] = dict(
-            first_name="John",
-            last_name="Doe",
-            email="john@mail.tk",
-            tel="81234567111",
-            children="Blah blah blah"
-        )
-        self.mock_data['jane'] = dict(
-            first_name="Jane",
-            last_name="Doe",
-            email="jane@mail.tk",
-            tel="81234567112",
-            children="Blah blah blah bleh"
-        )
+        """
+        - ensure all schedules are in future
+        - none of them sold_out
+        """
 
+        per = Performance.objects.all()
+        pla = Place.objects.all()
 
-    def testAddNewSpectator(self):
-        f = SpectatorModelForm(self.mock_data['jane'])
+        for i in range(1, 3):
+            Schedule.objects.create(
+                performance=per[i % 2],
+                place=pla[(i+1) % 2],
+                showtime=tz.localtime(tz.now()) + tz.timedelta(i)
+            )
+        for i in range(1, 3):
+            Schedule.objects.create(
+                performance=per[i % 2],
+                place=pla[i % 2],
+                showtime=tz.localtime(tz.now()) + tz.timedelta(i)
+            )
+
+    def testFormCreatesReservation(self):
+        jane = MockData.users['jane']
+        show = Schedule.objects.first()
+        seatings = {
+            'seating_adult': 0,
+            'seating_child': 0,
+        }
+        form = ReservationForm(
+            {**jane, **{'show': show.pk}, **seatings},
+        )
+        form.show = show
+        if not form.is_valid():
+            log.debug(form.errors.as_data())
         self.assertTrue(
-            f.is_valid(),
+            form.is_valid(),
             "Form is valid"
         )
-        spectator = f.save()
-        self.assertIsInstance(
-            spectator,
-            Spectator,
-            "Form makes new Spectator instance"
+        reservation = form.save()
+        self.assertEqual(
+            reservation.show,
+            show,
+            "Show set right",
         )
         self.assertEqual(
-            Spectator.objects.filter(
-                email=self.mock_data['jane']['email']).count(),
-            1,
-            "Form saves data to db"
+            reservation.first_name,
+            jane['first_name'],
+            "User name set right"
         )
-
-    def testPreserveCurrentSpectator(self):
-        john = Spectator.objects.create(**self.mock_data['john'])
-        f = SpectatorModelForm(self.mock_data['john'])
-        if not f.is_valid():
-            log.error("Errors are: %s", f.errors.as_data())
-        self.assertTrue(
-            f.is_valid(),
-            "Form is valid"
-        )
-        spectator = f.save()
-        self.assertEqual(
-            spectator,
-            john,
-            "Spectator is John"
-        )
-        self.assertEqual(
-            Spectator.objects.filter(
-                email=self.mock_data['john']['email']).count(),
-            1,
-            "No duplicates of John"
-        )
-
-
-
-
-
