@@ -2,10 +2,12 @@
   "name": "wag_ftheatre",
   "version": "1.0.1",
   "description": "First theatre site on wagtail cms",
-  "main": "uifactory/main.js",
+  "main": "main.js",
   "scripts": {
     "test": "mocha  --compilers js:babel-register  \"uifactory/test/**/*.js\"",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "build": "webpack",
+    "start": "npm run build -- -dw"
   },
   "babel": {
     "presets": [
@@ -33,6 +35,7 @@
     "file-loader": "^0.9.0",
     "imports-loader": "^0.6.5",
     "jsdom": "^9.4.1",
+    "material-design-lite": "^1.2.1",
     "mocha": "^3.0.0",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",

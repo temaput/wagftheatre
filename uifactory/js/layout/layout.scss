@@ -1,5 +1,6 @@
-@import 'mdl/material.min';
-@import 'variables';
+@import "~material-design-lite/src/material-design-lite.scss";
+@import "~material-design-lite/src/_variables.scss";
+
 //reset figure, section
 figure, section {
     padding: 0;
@@ -19,7 +20,7 @@ figure, section {
 .layout-section {
     padding-top: 115px;
 }
-@media (max-width: $tablet-breakpoint - 1) {
+@media (max-width: $grid-tablet-breakpoint - 1) {
     .layout-section {
         padding-top: 78px;
     }
@@ -38,7 +39,7 @@ figure, section {
     border-bottom: 1px solid #d8d8d8;
 }
 
-@media (max-width: $desktop-breakpoint - 1) {
+@media (max-width: $grid-desktop-breakpoint - 1) {
     .navigation {
         display: none;
     }
@@ -52,13 +53,13 @@ figure, section {
     text-decoration: none;
 }
 .mega-footer__social-btn--vk {
-    background: url(../images/vk-logo.png) center/contain no-repeat transparent;
+    background: url(./images/vk-logo.png) center/contain no-repeat transparent;
 }
 .mega-footer__social-btn--fb {
-    background: url(../images/fb-logo.svg) center/contain no-repeat transparent;
+    background: url(./images/fb-logo.svg) center/contain no-repeat transparent;
 }
 .mega-footer__social-btn--gplus {
-    background: url(../images/gplus-logo.svg) center/contain no-repeat transparent;
+    background: url(./images/gplus-logo.svg) center/contain no-repeat transparent;
 }
 .project-thumb {
     width: 100%;

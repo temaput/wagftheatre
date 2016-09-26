@@ -1,4 +1,5 @@
-@import "variables";
+@import "~material-design-lite/src/material-design-lite.scss";
+@import "~material-design-lite/src/_variables.scss";
 $thumb-gap: 18px;
 
 .gallery {
@@ -30,13 +31,13 @@ $thumb-gap: 18px;
 }
 
 // tablet
-@media (min-width: $tablet-breakpoint) and (max-width: $desktop-breakpoint - 1) {
+@media (min-width: $grid-tablet-breakpoint) and (max-width: $grid-desktop-breakpoint - 1) {
   .gallery {
     column-count: 2;
   }
 }
 //phone
-@media (max-width: $tablet-breakpoint - 1) {
+@media (max-width: $grid-tablet-breakpoint - 1) {
   .gallery {
     column-count: 1;
   }
@@ -56,14 +57,14 @@ $thumb-gap: 18px;
     height: auto;
   }
 }
-@media (min-width: $tablet-breakpoint) and (max-width: $desktop-breakpoint - 1) {
+@media (min-width: $grid-tablet-breakpoint) and (max-width: $grid-desktop-breakpoint - 1) {
   .gallery--flat {
     .gallery__thumb-figure {
       width: 50%;
     }
   }
 }
-@media (max-width: $tablet-breakpoint - 1) {
+@media (max-width: $grid-tablet-breakpoint - 1) {
   .gallery--flat {
     .gallery__thumb-figure {
       width: 100%;

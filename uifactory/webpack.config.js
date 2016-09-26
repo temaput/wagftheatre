@@ -1,11 +1,29 @@
-const webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
+const path = require('path');
+const fs = require('fs');
+const autoprefixer = require('autoprefixer');
+
+const PATHS = {
+  js: path.join(__dirname, 'js'),
+  build: path.join(__dirname, '../wag_ftheatre/static/scripts/')
+};
+
+function getDirs(dir) {
+  const entries = {};
+  const files = fs.readdirSync(dir);
+  files.forEach(function(f) {
+    const fullPath = path.join(dir, f);
+    if (fs.statSync(fullPath).isDirectory()) {
+      entries[f] = fullPath;
+    }
+  });
+  return entries;
+}
 
 module.exports = {
-  entry: './uifactory/main.js',
+  entry: getDirs(PATHS.js),
   output: {
-    path: __dirname,
-    filename: 'wag_ftheatre/static/scripts/bundle.js',
+    path: PATHS.build,
+    filename: '[name].js',
   },
   module: {
     loaders: [
@@ -39,13 +57,4 @@ module.exports = {
   postcss: function() {
     return [autoprefixer];
   },
-  /*
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    })
-  ]
-  */
 };
