@@ -1,7 +1,6 @@
 from django.test import TestCase
 from theatre.models import Performance, Place
 from reservations.models import Schedule
-from reservations.schema import PlaceNode, PerformanceNode, ScheduleNode
 from reservations.forms import ReservationForm
 from reservations.tests_mock_data import MockData
 from wag_ftheatre.schema import schema
@@ -360,11 +359,7 @@ class ScheduleSchemaTestCase(TestCase):
         query = """
             query {
             response:scheduledPerformances {
-                edges {
-                    Performance:node {
-                        title
-                    }
-                }
+                title
             }
             }
         """
@@ -379,7 +374,7 @@ class ScheduleSchemaTestCase(TestCase):
             "Data is not empty"
         )
         self.assertEqual(
-            len(result.data['response']['edges']),
+            len(result.data['response']),
             2,
             "Two Performances are scheduled"
         )
@@ -397,12 +392,12 @@ class ScheduleSchemaTestCase(TestCase):
 
         result = schema.execute(query)
         self.assertEqual(
-            len(result.data['response']['edges']),
+            len(result.data['response']),
             1,
             "Only one performance scheduled now"
         )
         self.assertEqual(
-            result.data['response']['edges'][0]['Performance']['title'],
+            result.data['response'][0]['title'],
             p2.title,
             "Its #2"
         )
@@ -411,11 +406,7 @@ class ScheduleSchemaTestCase(TestCase):
         query = """
             query {
             response:scheduledPlaces {
-                edges {
-                    Place:node {
                         title
-                    }
-                }
             }
             }
         """
@@ -430,7 +421,7 @@ class ScheduleSchemaTestCase(TestCase):
             "Data is not empty"
         )
         self.assertEqual(
-            len(result.data['response']['edges']),
+            len(result.data['response']),
             2,
             "Two Places are running"
         )
@@ -443,42 +434,33 @@ class ScheduleSchemaTestCase(TestCase):
 
         result = schema.execute(query)
         self.assertEqual(
-            len(result.data['response']['edges']),
+            len(result.data['response']),
             1,
             "Only one performance scheduled now"
         )
         self.assertEqual(
-            result.data['response']['edges'][0]['Place']['title'],
+            result.data['response'][0]['title'],
             p2.title,
             "Its #2"
         )
 
     def testQueryPerformancesByPlace(self):
         query = """
-            query QueryPerformancesByPlace ($slug:String, $gid:String){
-                response_id:performancesByPlace(gid: $gid) {
-                    edges {
-                        Performance:node {
+            query QueryPerformancesByPlace ($slug:String, $pk:String){
+                response_id:performancesByPlace(pk: $pk) {
                             title
-                        }
-                    }
                 }
                 response_slug:performancesByPlace(slug: $slug) {
-                    edges {
-                        Performance:node {
                             title
-                        }
-                    }
                 }
             }
         """
         pla1 = Place.objects.first()
-        pnode = PlaceNode(pla1)
         p1 = Performance.objects.first()
         p2 = Performance.objects.last()
 
         variable_values = {
-            'gid': pnode.to_global_id(),
+            'pk': pla1.pk,
             'slug': pla1.slug,
         }
         result = schema.execute(
@@ -500,12 +482,12 @@ class ScheduleSchemaTestCase(TestCase):
             "Data is not empty"
         )
         self.assertEqual(
-            len(result.data['response_slug']['edges']),
+            len(result.data['response_slug']),
             2,
             "Two Performances are scheduled on place #1"
         )
         self.assertEqual(
-            len(result.data['response_id']['edges']),
+            len(result.data['response_id']),
             2,
             "Two Performances are scheduled on place #1"
         )
@@ -522,37 +504,29 @@ class ScheduleSchemaTestCase(TestCase):
 
         result = schema.execute(query, variable_values=variable_values)
         self.assertEqual(
-            len(result.data['response_id']['edges']),
+            len(result.data['response_id']),
             1,
             "Only one performance scheduled now"
         )
         self.assertEqual(
-            len(result.data['response_slug']['edges']),
+            len(result.data['response_slug']),
             1,
             "Only one performance scheduled now"
         )
         self.assertEqual(
-            result.data['response_slug']['edges'][0]['Performance']['title'],
+            result.data['response_slug'][0]['title'],
             p2.title,
             "Its #2"
         )
 
     def testQueryPlacesByPerformance(self):
         query = """
-            query QueryPlacesByPerformance($slug:String, $gid:String){
-                response_id:placesByPerformance(gid: $gid) {
-                    edges {
-                        Place:node {
+            query QueryPlacesByPerformance($slug:String, $pk:String){
+                response_id:placesByPerformance(pk: $pk) {
                             title
-                        }
-                    }
                 }
                 response_slug:placesByPerformance(slug: $slug) {
-                    edges {
-                        Place:node {
                             title
-                        }
-                    }
                 }
             }
         """
@@ -560,10 +534,9 @@ class ScheduleSchemaTestCase(TestCase):
         p2 = Place.objects.last()
 
         per1 = Performance.objects.first()
-        pnode = PerformanceNode(per1)
 
         variable_values = {
-            'gid': pnode.to_global_id(),
+            'pk': per1.pk,
             'slug': per1.slug,
         }
         result = schema.execute(
@@ -585,12 +558,12 @@ class ScheduleSchemaTestCase(TestCase):
             "Data is not empty"
         )
         self.assertEqual(
-            len(result.data['response_slug']['edges']),
+            len(result.data['response_slug']),
             2,
             "Two Places run performance #1"
         )
         self.assertEqual(
-            len(result.data['response_id']['edges']),
+            len(result.data['response_id']),
             2,
             "Two Places run performance #1"
         )
@@ -607,17 +580,17 @@ class ScheduleSchemaTestCase(TestCase):
 
         result = schema.execute(query, variable_values=variable_values)
         self.assertEqual(
-            len(result.data['response_id']['edges']),
+            len(result.data['response_id']),
             1,
             "Only one performance scheduled now"
         )
         self.assertEqual(
-            len(result.data['response_slug']['edges']),
+            len(result.data['response_slug']),
             1,
             "Only one performance scheduled now"
         )
         self.assertEqual(
-            result.data['response_slug']['edges'][0]['Place']['title'],
+            result.data['response_slug'][0]['title'],
             p2.title,
             "Its #2"
         )
@@ -626,9 +599,9 @@ class ScheduleSchemaTestCase(TestCase):
         query = """
         query QueryShows(
             $performance_slug: String,
-            $performance_gid: String,
+            $performance_pk: String,
             $place_slug: String,
-            $place_gid: String,
+            $place_pk: String,
             $showtime_date: String,
             $showtime_gte: String
             ) {
@@ -636,46 +609,26 @@ class ScheduleSchemaTestCase(TestCase):
             performanceSlug: $performance_slug,
             placeSlug: $place_slug
             ) {
-                edges {
-                    Show:node {
                         id
-                    }
-                }
             }
             shows_by_pp_id:shows(
-            performanceGid: $performance_gid,
-            placeGid: $place_gid
+            performancePk: $performance_pk,
+            placePk: $place_pk
             ) {
-                edges {
-                    Show:node {
                         id
-                    }
-                }
             }
             shows_by_showtime_date:shows(
             showtimeDate: $showtime_date
             ){
-                edges {
-                    Show:node {
                         id
-                    }
-                }
             }
             shows_by_showtime_gte:shows(
             showtimeGte: $showtime_gte
             ){
-                edges {
-                    Show:node {
                         id
-                    }
-                }
             }
             shows_available:shows {
-                edges {
-                    Show:node {
                         id
-                    }
-                }
             }
         }
         """
@@ -683,18 +636,15 @@ class ScheduleSchemaTestCase(TestCase):
         per2 = Performance.objects.last()
         pla1 = Place.objects.first()
         pla2 = Place.objects.last()
-        perNode = PerformanceNode(per1)
-        plaNode = PlaceNode(pla1)
         show = Schedule.available.filter(
             performance=per1,
             place=pla1
         ).first()
-        showNode = ScheduleNode(show)
         today = tz.localtime(tz.now()).date()
         yesterday = tz.localtime(tz.now()) - tz.timedelta(1)
         variable_values = {
-            "performance_gid": perNode.to_global_id(),
-            "place_gid": plaNode.to_global_id(),
+            "performance_pk": per1.pk,
+            "place_pk": pla1.pk,
             "performance_slug": per1.slug,
             "place_slug": pla1.slug,
             "showtime_date": today,
@@ -719,13 +669,13 @@ class ScheduleSchemaTestCase(TestCase):
             "Shows by id or by slug should provide equal results"
         )
         self.assertEqual(
-            len(result.data['shows_by_pp_id']['edges']),
+            len(result.data['shows_by_pp_id']),
             1,
             "They both should bring up 1 show"
         )
         self.assertEqual(
-            result.data['shows_by_pp_id']['edges'][0]['Show']['id'],
-            showNode.to_global_id(),
+            result.data['shows_by_pp_id'][0]['id'],
+            str(show.id),
             "It should be show with this id"
         )
 
@@ -766,12 +716,12 @@ class ScheduleSchemaTestCase(TestCase):
             "Result is valid"
         )
         self.assertEqual(
-            len(result.data['shows_by_showtime_gte']['edges']),
+            len(result.data['shows_by_showtime_gte']),
             3,
             "3 shows are scheduled and available"
         )
         self.assertEqual(
-            len(result.data['shows_by_showtime_date']['edges']),
+            len(result.data['shows_by_showtime_date']),
             1,
             "Only 1 show is scheduled for today"
         )

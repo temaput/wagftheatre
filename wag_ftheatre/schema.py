@@ -1,8 +1,12 @@
 import reservations.schema
 import graphene
 
-class Query(reservations.schema.Query):
+
+class Query(reservations.schema.Query, graphene.ObjectType):
     pass
 
-schema = graphene.Schema(name='Reservations Schema')
-schema.query = Query
+
+class Mutation(reservations.schema.Mutation, graphene.ObjectType):
+    pass
+
+schema = graphene.Schema(query=Query, mutation=Mutation)

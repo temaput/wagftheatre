@@ -3,9 +3,9 @@ from reservations.models import Reservation
 
 
 class ScheduleFilterForm(forms.Form):
-    performance_gid = forms.CharField()
+    performance_pk = forms.CharField()
     performance_slug = forms.CharField()
-    place_gid = forms.CharField()
+    place_pk = forms.CharField()
     place_slug = forms.CharField()
     showtime_date = forms.DateField()
     showtime_gte = forms.DateField()
