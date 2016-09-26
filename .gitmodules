@@ -1,0 +1,3 @@
+[submodule "uifactory"]
+	path = uifactory
+	url = ./uifactory
