@@ -40,8 +40,9 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /*!*********************************!*\
   !*** ./js/video_embed/index.js ***!
   \*********************************/
@@ -49,13 +50,13 @@
 
 	'use strict';
 	
-	var _YTPlayerEmbed = __webpack_require__(/*! ./YTPlayerEmbed.js */ 17);
+	var _YTPlayerEmbed = __webpack_require__(/*! ./YTPlayerEmbed.js */ 20);
 	
 	var _YTPlayerEmbed2 = _interopRequireDefault(_YTPlayerEmbed);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	__webpack_require__(/*! ./video_embed.scss */ 18);
+	__webpack_require__(/*! ./video_embed.scss */ 21);
 	
 	document.onreadystatechange = function () {
 	  if (document.readyState === 'interactive') {
@@ -69,12 +70,8 @@
 	};
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */
+
+/***/ 6:
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -133,7 +130,8 @@
 
 
 /***/ },
-/* 7 */
+
+/***/ 7:
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -388,16 +386,8 @@
 
 
 /***/ },
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */
+
+/***/ 20:
 /*!*****************************************!*\
   !*** ./js/video_embed/YTPlayerEmbed.js ***!
   \*****************************************/
@@ -446,7 +436,8 @@
 	}
 
 /***/ },
-/* 18 */
+
+/***/ 21:
 /*!*****************************************!*\
   !*** ./js/video_embed/video_embed.scss ***!
   \*****************************************/
@@ -455,7 +446,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./../../~/sass-loader!./video_embed.scss */ 19);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./../../~/sass-loader!./video_embed.scss */ 22);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 7)(content, {});
@@ -475,7 +466,8 @@
 	}
 
 /***/ },
-/* 19 */
+
+/***/ 22:
 /*!*******************************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/sass-loader!./js/video_embed/video_embed.scss ***!
   \*******************************************************************************************/
@@ -492,5 +484,6 @@
 
 
 /***/ }
-/******/ ]);
+
+/******/ });
 //# sourceMappingURL=video_embed.js.map

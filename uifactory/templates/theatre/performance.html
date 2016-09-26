@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block extra_css %}
@@ -35,6 +36,10 @@
       </div>
     </section>
   {% endif %}
+{% endblock %}
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'scripts/gallery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/video_embed.js' %}"></script>
 {% endblock %}
 {% block below_layout %}
   {% include 'includes/photoswipe_template.html' %}

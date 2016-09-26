@@ -54,6 +54,11 @@ module.exports = {
       },
     ],
   },
+  /*
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin("init.js")
+  ],
+  */
   postcss: function() {
     return [autoprefixer];
   },
