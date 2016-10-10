@@ -50,13 +50,13 @@
 
 	'use strict';
 	
-	var _YTPlayerEmbed = __webpack_require__(/*! ./YTPlayerEmbed.js */ 20);
+	var _YTPlayerEmbed = __webpack_require__(/*! ./YTPlayerEmbed.js */ 274);
 	
 	var _YTPlayerEmbed2 = _interopRequireDefault(_YTPlayerEmbed);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	__webpack_require__(/*! ./video_embed.scss */ 21);
+	__webpack_require__(/*! ./video_embed.scss */ 275);
 	
 	document.onreadystatechange = function () {
 	  if (document.readyState === 'interactive') {
@@ -387,7 +387,7 @@
 
 /***/ },
 
-/***/ 20:
+/***/ 274:
 /*!*****************************************!*\
   !*** ./js/video_embed/YTPlayerEmbed.js ***!
   \*****************************************/
@@ -437,7 +437,7 @@
 
 /***/ },
 
-/***/ 21:
+/***/ 275:
 /*!*****************************************!*\
   !*** ./js/video_embed/video_embed.scss ***!
   \*****************************************/
@@ -446,7 +446,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./../../~/sass-loader!./video_embed.scss */ 22);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./../../~/sass-loader!./video_embed.scss */ 276);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 7)(content, {});
@@ -467,7 +467,7 @@
 
 /***/ },
 
-/***/ 22:
+/***/ 276:
 /*!*******************************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/sass-loader!./js/video_embed/video_embed.scss ***!
   \*******************************************************************************************/

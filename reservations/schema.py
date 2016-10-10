@@ -25,11 +25,16 @@ class PlaceNode(DjangoObjectType):
 class ScheduleNode(DjangoObjectType):
 
     """
-    DocInfo blah blah
+    Shedule model serializer
     """
 
     place = graphene.Field(PlaceNode)
     performance = graphene.Field(PerformanceNode)
+    # to be sure about javascript interpretation of showtime we use timestamp
+    showtime_stamp = graphene.Float()
+
+    def resolve_showtime_stamp(self, *args):
+        return self.showtime.timestamp()
 
     class Meta:
         model = Schedule

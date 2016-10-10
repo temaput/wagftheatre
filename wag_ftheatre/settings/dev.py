@@ -25,7 +25,15 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'INFO',
+            'level': 'DEBUG',
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'django.server': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
         },
         'django.db.backends': {
             'level': 'ERROR',
