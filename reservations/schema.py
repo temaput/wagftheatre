@@ -3,7 +3,7 @@ from graphene_django import DjangoObjectType
 
 from .models import Schedule, Reservation
 from .forms import ScheduleFilterForm, ReservationForm
-from wag_ftheatre import utils
+from wag_ftheatre.utils import graphql_converters
 from theatre.models import Performance, Place
 
 import logging
@@ -45,7 +45,7 @@ class ReservationNode(DjangoObjectType):
     class Meta:
         model = Reservation
 
-ReservationInput = utils.graphene_input_object_from_model_form(
+ReservationInput = graphql_converters.graphene_input_object_from_model_form(
     'ReservationInput', ReservationForm)
 
 

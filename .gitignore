@@ -7,6 +7,7 @@
 *.sqlite3
 local_settings.py
 *.bak
+wag_ftheatre/static/scripts
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
