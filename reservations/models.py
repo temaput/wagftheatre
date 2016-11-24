@@ -129,6 +129,9 @@ class Reservation(models.Model):
     - Дополнительно взрослых мест* (0)
     - Дополнительно детских мест* (0)
     """
+    show = models.ForeignKey(
+        Schedule, verbose_name="Показ",
+        related_name="reservations")
     email = models.EmailField("E-mail", max_length=256)
     first_name = models.CharField("Имя", max_length=50,
                                   blank=True)
@@ -136,17 +139,11 @@ class Reservation(models.Model):
                                  blank=True)
     tel = models.CharField("Мобильный телефон", max_length=50,
                            blank=True)
-    children = models.TextField("Дополнительные сведения",
-                                blank=True,
-                                help_text="Укажите возраст и имена детей")
-    reservation_date = models.DateTimeField(
-        "Дата бронирования", auto_now_add=True)
-    show = models.ForeignKey(
-        Schedule, verbose_name="Показ",
-        related_name="reservations")
     seating_adult = models.PositiveSmallIntegerField(
         "Дополнительные места (взр)",
         default=0)
+    reservation_date = models.DateTimeField(
+        "Дата бронирования", auto_now_add=True)
     seating_child = models.PositiveSmallIntegerField(
         "Дополнительные места (детск)", default=0)
     settled = models.BooleanField("Бронь выкуплена", default=False)

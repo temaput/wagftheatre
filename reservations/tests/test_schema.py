@@ -1,9 +1,9 @@
+import json
 from django.test import TestCase
 from theatre.models import Performance, Place
 from reservations.models import Schedule
-from reservations.forms import ReservationForm
-from reservations.tests_mock_data import MockData
 from wag_ftheatre.schema import schema
+from .mock_data import MockData
 
 from django.utils import timezone as tz
 
@@ -13,320 +13,8 @@ log = logging.getLogger(__name__)
 # Create your tests here.
 
 
-class ScheduleManagersTestCase(TestCase):
-
-    fixtures = ['fixture1.xml']
-
-    def setUp(self):
-        """
-        - ensure all schedules are in future
-        - none of them sold_out
-        """
-
-        per = Performance.objects.all()
-        pla = Place.objects.all()
-
-        for i in range(1, 3):
-            Schedule.objects.create(
-                performance=per[i % 2],
-                place=pla[(i+1) % 2],
-                showtime=tz.localtime(tz.now()) + tz.timedelta(i)
-            )
-        for i in range(1, 3):
-            Schedule.objects.create(
-                performance=per[i % 2],
-                place=pla[i % 2],
-                showtime=tz.localtime(tz.now()) + tz.timedelta(i)
-            )
-
-    def _testFixtureIsThere(self):
-        self.assertEqual(
-            Place.objects.count(),
-            2,
-            "There are 2 places"
-        )
-        self.assertEqual(
-            Performance.objects.count(),
-            2,
-            "There are 2 performances"
-        )
-        self.assertEqual(
-            Schedule.objects.count(),
-            4,
-            "There are 4 scheduled shows"
-        )
-
-        self.assertEqual(
-            Schedule.objects.filter(
-                sold_out=False,
-                showtime__gte=tz.localtime(tz.now()).date()
-            ).count(),
-            4,
-            "Just make sure that we have all schedules set"
-        )
-        log.debug(
-            "Distinct query: %s",
-            str(Performance.objects.filter(
-                shows_scheduled__sold_out=False
-            ).distinct().query)
-        )
-        log.debug(
-            "NonDistinct query: %s",
-            str(Performance.objects.filter(
-                shows_scheduled__sold_out=False
-            ).query)
-        )
-        self.assertEqual(
-            Performance.objects.filter(
-                shows_scheduled__sold_out=False
-            ).distinct().count(),
-            2,
-            "Confirm both Performances have scheduled show, not sold_out"
-        )
-
-    def testScheduledPerformances(self):
-
-        self.assertEqual(
-            Performance.scheduled.count(),
-            2,
-            "Both performances are scheduled for now"
-        )
-        p1 = Performance.objects.first()
-        p2 = Performance.objects.last()
-        Schedule.objects.filter(performance=p1).update(sold_out=True)
-        self.assertEqual(
-            Performance.scheduled.count(),
-            1,
-            "Only one is scheduled"
-        )
-        self.assertEqual(
-            Performance.scheduled.first(),
-            p2,
-            "Its #2"
-        )
-        # reset sold_out schedules
-        Schedule.objects.update(sold_out=False)
-        self.assertEqual(
-            Performance.scheduled.count(),
-            2,
-            "Both performances are scheduled again"
-        )
-        # make schedules obsolete
-        yesterday = tz.localtime(tz.now()).date() - tz.timedelta(1)
-        Schedule.objects.filter(performance=p2).update(showtime=yesterday)
-        self.assertEqual(
-            Performance.scheduled.count(),
-            1,
-            "Only one scheduled left"
-        )
-        self.assertEqual(
-            Performance.scheduled.first(),
-            p1,
-            "It's #1"
-        )
-
-    def testScheduledPlaces(self):
-
-        self.assertEqual(
-            Place.scheduled.count(),
-            2,
-            "Both places are schduled for now"
-        )
-        p1 = Place.objects.first()
-        p2 = Place.objects.last()
-
-        # Make all p1 shows sold
-        Schedule.objects.filter(place=p1).update(sold_out=True)
-        self.assertEqual(
-            Place.scheduled.count(),
-            1,
-            "Now only one place is scheduled"
-        )
-        self.assertEqual(
-            Place.scheduled.first(),
-            p2,
-            "And its #2"
-        )
-
-        # Reset
-        Schedule.objects.update(sold_out=False)
-        self.assertEqual(
-            Place.scheduled.count(),
-            2,
-            "Both places are schduled for now"
-        )
-
-        # Make all p2 shows obsolete
-        yesterday = tz.localtime(tz.now()).date() - tz.timedelta(1)
-        Schedule.objects.filter(place=p2).update(showtime=yesterday)
-
-        self.assertEqual(
-            Place.scheduled.count(),
-            1,
-            "Now only one place is scheduled"
-        )
-        self.assertEqual(
-            Place.scheduled.first(),
-            p1,
-            "And its #1"
-        )
-
-    def testPerformanceByPlace(self):
-
-        pla1 = Place.objects.first()
-        pla2 = Place.objects.last()
-        per1 = Performance.objects.first()
-        per2 = Performance.objects.last()
-        # both performances scheduled on both places
-        self.assertEqual(
-            Performance.scheduled.by_place(pla1).count(),
-            2,
-            "both performances scheduled on both places"
-        )
-        self.assertEqual(
-            Performance.scheduled.by_place(pla2).count(),
-            2,
-            "both performances scheduled on both places"
-        )
-
-        # 1-1 is sold out
-        Schedule.objects.filter(place=pla1, performance=per1).update(
-            sold_out=True)
-        self.assertEqual(
-            Performance.scheduled.by_place(pla1).count(),
-            1,
-            "Now only one Performance was left on place 1"
-        )
-        self.assertEqual(
-            Performance.scheduled.by_place(pla1).first(),
-            per2,
-            "And its #2"
-        )
-        self.assertEqual(
-            Performance.scheduled.by_place(pla2).count(),
-            2,
-            "But still both available on place2"
-        )
-
-    def testPlaceByPerformance(self):
-        per1 = Performance.objects.first()
-        per2 = Performance.objects.last()
-        pla1 = Place.objects.first()
-        pla2 = Place.objects.last()
-
-        # both performances scheduled on both places
-        self.assertEqual(
-            Place.scheduled.by_performance(per1).count(),
-            2,
-            "both performances scheduled on both places"
-        )
-        self.assertEqual(
-            Place.scheduled.by_performance(per2).count(),
-            2,
-            "both performances scheduled on both places"
-        )
-
-        # 2-2 is obsolete
-        yesterday = tz.localtime(tz.now()).date() - tz.timedelta(1)
-        Schedule.objects.filter(performance=per2, place=pla2).update(
-            showtime=yesterday
-        )
-
-        self.assertEqual(
-            Place.scheduled.by_performance(per2).count(),
-            1,
-            "Now only one Place is showing Performance #2"
-        )
-        self.assertEqual(
-            Place.scheduled.by_performance(per2).first(),
-            pla1,
-            "And its #1",
-        )
-        self.assertEqual(
-            Place.scheduled.by_performance(per1).count(),
-            2,
-            "But still both present Performance #1"
-        )
-
-    def testPerformanceByPlaceField(self):
-        pla1 = Place.objects.first()
-        pla2 = Place.objects.last()
-        per1 = Performance.objects.first()
-        per2 = Performance.objects.last()
-        # both performances scheduled on both places
-        self.assertEqual(
-            Performance.scheduled.by_place_field(
-                pk=pla1.pk
-            ).count(),
-            2,
-            "both performances scheduled on both places"
-        )
-        self.assertEqual(
-            Performance.scheduled.by_place_field(
-                slug=pla2.slug
-            ).count(),
-            2,
-            "both performances scheduled on both places"
-        )
-
-        # 1-1 is sold out
-        Schedule.objects.filter(place=pla1, performance=per1).update(
-            sold_out=True)
-        self.assertEqual(
-            Performance.scheduled.by_place_field(pk=pla1.pk).count(),
-            1,
-            "Now only one Performance was left on place 1"
-        )
-        self.assertEqual(
-            Performance.scheduled.by_place_field(slug=pla1.slug).first(),
-            per2,
-            "And its #2"
-        )
-        self.assertEqual(
-            Performance.scheduled.by_place_field(slug=pla2.slug).count(),
-            2,
-            "But still both available on place2"
-        )
-
-    def testPlaceByPerformanceField(self):
-        per1 = Performance.objects.first()
-        per2 = Performance.objects.last()
-        pla1 = Place.objects.first()
-        pla2 = Place.objects.last()
-
-        # both performances scheduled on both places
-        self.assertEqual(
-            Place.scheduled.by_performance_field(pk=per1.pk).count(),
-            2,
-            "both performances scheduled on both places"
-        )
-        self.assertEqual(
-            Place.scheduled.by_performance_field(slug=per2.slug).count(),
-            2,
-            "both performances scheduled on both places"
-        )
-
-        # 2-2 is obsolete
-        yesterday = tz.localtime(tz.now()).date() - tz.timedelta(1)
-        Schedule.objects.filter(performance=per2, place=pla2).update(
-            showtime=yesterday
-        )
-
-        self.assertEqual(
-            Place.scheduled.by_performance_field(pk=per2.pk).count(),
-            1,
-            "Now only one Place is showing Performance #2"
-        )
-        self.assertEqual(
-            Place.scheduled.by_performance_field(slug=per2.slug).first(),
-            pla1,
-            "And its #1",
-        )
-        self.assertEqual(
-            Place.scheduled.by_performance_field(pk=per1.pk).count(),
-            2,
-            "But still both present Performance #1"
-        )
+def getPageURL(page):
+    return page.url
 
 
 class ScheduleSchemaTestCase(TestCase):
@@ -354,6 +42,91 @@ class ScheduleSchemaTestCase(TestCase):
                 place=pla[i % 2],
                 showtime=tz.localtime(tz.now()) + tz.timedelta(i)
             )
+
+    def testReservationForm(self):
+        query = """
+        query ReservationForm(
+            $showId: String, $performanceURL: String, $placeURL:String
+            ) {
+            fixedShowReservation:reservationForm(show: $showId) { ...fields
+            }
+            defaultReservation:reservationForm {
+                ...fields
+            }
+        fragment fields on FormInterface {
+            fields {
+                id value type hidden required label options error
+                customErrorMessages {
+                    valueMissing typeMismatch patternMismatch
+                }
+            }
+        }
+        }
+        """
+
+        # reservationForm = result.data['fixedShowReservationForm']
+
+    def testScheduleFilter(self):
+        query = """
+        query ScheduleFilter(
+            $showId: String, $performanceURL: String, $placeURL:String
+            ) {
+            fixedPerformance:scheduleFilter(url: $performanceURL) {
+                ...fields
+            }
+            fixedPlace:scheduleFilter(url: $placeURL) {
+                ...fields
+            }
+            default:scheduleFilter {
+                ...fields
+            }
+
+        }
+        fragment fields on FormInterface {
+            fields {
+                id value type hidden required label options error
+                customErrorMessages {
+                    valueMissing typeMismatch patternMismatch
+                }
+                options {label value}
+            }
+        }
+        """
+        per1 = Performance.objects.first()
+        pla1 = Place.objects.first()
+        show1 = Schedule.available.first()
+        variable_values = {
+            'performanceURL': getPageURL(per1),
+            'placeURL': getPageURL(pla1),
+            'show': show1.pk,
+        }
+        result = schema.execute(query, variable_values=variable_values)
+        if len(result.errors):
+            log.error(result.errors)
+
+        self.assertEqual(
+            len(result.errors),
+            0,
+            "Query is valid"
+        )
+        self.assertIsNotNone(
+            result.data,
+            "Data is not empty"
+        )
+
+        performanceFixed = result.data['performanceFixed']
+        reservationForm = result.data['reservationForm']
+        log.debug(performanceFixed)
+        self.assertDictEqual(
+            performanceFixed,
+            MockData.initialDataSample['ScheduleFilter'],
+            "Initial data for ScheduleFilter is good"
+        )
+        self.assertDictEqual(
+            reservationForm,
+            MockData.initialDataSample['ReservationForm'],
+            "Initial data for ReservationForm is good"
+        )
 
     def testQueryScheduledPerformances(self):
         query = """
@@ -729,60 +502,4 @@ class ScheduleSchemaTestCase(TestCase):
             result.data['shows_by_showtime_gte'],
             result.data['shows_available'],
             "Available shows should equal to gte today"
-        )
-
-
-class ReservationFormTestCase(TestCase):
-
-    fixtures = ['fixture1.xml']
-
-    def setUp(self):
-        """
-        - ensure all schedules are in future
-        - none of them sold_out
-        """
-
-        per = Performance.objects.all()
-        pla = Place.objects.all()
-
-        for i in range(1, 3):
-            Schedule.objects.create(
-                performance=per[i % 2],
-                place=pla[(i+1) % 2],
-                showtime=tz.localtime(tz.now()) + tz.timedelta(i)
-            )
-        for i in range(1, 3):
-            Schedule.objects.create(
-                performance=per[i % 2],
-                place=pla[i % 2],
-                showtime=tz.localtime(tz.now()) + tz.timedelta(i)
-            )
-
-    def testFormCreatesReservation(self):
-        jane = MockData.users['jane']
-        show = Schedule.objects.first()
-        seatings = {
-            'seating_adult': 0,
-            'seating_child': 0,
-        }
-        form = ReservationForm(
-            {**jane, **{'show': show.pk}, **seatings},
-        )
-        form.show = show
-        if not form.is_valid():
-            log.debug(form.errors.as_data())
-        self.assertTrue(
-            form.is_valid(),
-            "Form is valid"
-        )
-        reservation = form.save()
-        self.assertEqual(
-            reservation.show,
-            show,
-            "Show set right",
-        )
-        self.assertEqual(
-            reservation.first_name,
-            jane['first_name'],
-            "User name set right"
         )

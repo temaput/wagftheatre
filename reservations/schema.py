@@ -2,7 +2,7 @@ import graphene
 from graphene_django import DjangoObjectType
 
 from .models import Schedule, Reservation
-from .forms import ScheduleFilterForm, ReservationForm
+from .forms import ScheduleFilterForm, ScheduleFilterFormNew, ReservationForm
 from wag_ftheatre.utils import graphql_converters
 from theatre.models import Performance, Place
 
@@ -49,6 +49,18 @@ ReservationInput = graphql_converters.graphene_input_object_from_model_form(
     'ReservationInput', ReservationForm)
 
 
+class ScheduleFilterFormObject(graphene.ObjectType):
+
+    class Meta:
+        interfaces = (graphql_converters.FormInterface,)
+
+
+class ReservationFormObject(graphene.ObjectType):
+
+    class Meta:
+        interfaces = (graphql_converters.FormInterface,)
+
+
 class DjangoFormErrorMessage(graphene.ObjectType):
 
     field_name = graphene.String()
@@ -80,6 +92,11 @@ class MakeReservation(graphene.Mutation):
 
 class Query(graphene.AbstractType):
 
+    schedule_filter = ScheduleFilterFormObject(
+        place=graphene.String(),
+        performance=graphene.String()
+    )
+    reservation_form = ReservationFormObject()
     places_by_performance = graphene.List(
         PlaceNode,
         slug=graphene.String(),
@@ -101,6 +118,14 @@ class Query(graphene.AbstractType):
         showtime_date=graphene.String(),
         showtime_gte=graphene.String()
     )
+
+    def resolve_schedule_filter(self, args, context, info):
+        url = args.pop('url', None)
+        place_index = Place.objects.first()
+        performance_index =
+        f = ScheduleFilterFormNew(args)
+
+
 
     def resolve_shows(self, args, context, info):
         kwargs = {}

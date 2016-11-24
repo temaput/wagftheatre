@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'modelcluster',
     'compressor',
     'taggit',
-    'django_graphiql',
+    'graphene_django',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -145,3 +145,12 @@ COMPRESS_PRECOMPILERS = (
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "wag_ftheatre"
+
+# Graphene settings
+GRAPHENE = {
+    'SCHEMA': 'wag_ftheatre.schema.schema',
+    'MIDDLEWARE': (
+        'graphene_django.debug.DjangoDebugMiddleware',
+    ),
+    'SCHEMA_INDENT': 2,
+}
