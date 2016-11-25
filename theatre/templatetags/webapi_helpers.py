@@ -5,10 +5,11 @@ register = template.Library()
 
 
 @register.simple_tag
-def prescribed_data(instance):
-    prescribed_data = {
-        'currents': {
+def predefined_data(instance, mode):
+    predefined_data = {
+        'mode': mode,
+        'filledData': {
             instance._meta.model_name: instance.pk
         }
     }
-    return mark_safe(json.dumps(prescribed_data, ensure_ascii=False))
+    return mark_safe(json.dumps(predefined_data, ensure_ascii=False))

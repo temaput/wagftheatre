@@ -92,11 +92,18 @@ class MakeReservation(graphene.Mutation):
 
 class Query(graphene.AbstractType):
 
-    schedule_filter = ScheduleFilterFormObject(
+    schedule_filter = graphene.Field(
+        ScheduleFilterFormObject,
         place=graphene.String(),
-        performance=graphene.String()
+        performance=graphene.String(),
+        mode=graphene.String()
     )
-    reservation_form = ReservationFormObject()
+    reservation_form = graphene.Field(
+        ReservationFormObject,
+        place=graphene.String(),
+        performance=graphene.String(),
+        show=graphene.String()
+    )
     places_by_performance = graphene.List(
         PlaceNode,
         slug=graphene.String(),
@@ -119,13 +126,20 @@ class Query(graphene.AbstractType):
         showtime_gte=graphene.String()
     )
 
+    def resolve_reservation_form(self, args, context, info):
+        check = ScheduleFilterFormNew(args)
+        if check.is_valid():
+            show = check.cleaned_data.get('show')
+            f = ReservationForm(initial={'show': show})
+            return ReservationFormObject(
+                fields=f.get_graphql_fields_representation()
+            )
+
     def resolve_schedule_filter(self, args, context, info):
-        url = args.pop('url', None)
-        place_index = Place.objects.first()
-        performance_index =
         f = ScheduleFilterFormNew(args)
-
-
+        return ScheduleFilterFormObject(
+            fields=f.get_graphql_fields_representation()
+        )
 
     def resolve_shows(self, args, context, info):
         kwargs = {}

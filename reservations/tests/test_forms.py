@@ -5,11 +5,29 @@ from reservations.forms import ReservationForm, ScheduleFilterFormNew
 from .mock_data import MockData
 
 from django.utils import timezone as tz
+import graphene
+from wag_ftheatre.utils.graphql_converters import (
+    FormFieldObject
+)
 
 import logging
 log = logging.getLogger(__name__)
 
 # Create your tests here.
+
+
+def make_graphql_query(query, fieldsList):
+
+    class Query(graphene.ObjectType):
+        fields = graphene.List(FormFieldObject)
+
+        def resolve_fields(self, *args):
+            return fieldsList
+    schema = graphene.Schema(query=Query)
+    result = schema.execute(query)
+    if len(result.errors):
+        log.error(result.errors)
+    return result
 
 
 class ReservationFormTestCase(TestCase):
@@ -66,6 +84,23 @@ class ReservationFormTestCase(TestCase):
             jane['first_name'],
             "User name set right"
         )
+
+    def testGraphQLRepresentation(self):
+        show = Schedule.available.first()
+        frm = ReservationForm(initial={'show': show})
+        fieldsList = frm.get_graphql_fields_representation()
+        query = """
+            {
+            fields {
+                id type value label helpText disabled required
+                customErrorMessages {valueMissing typeMismatch}
+                options {label value}
+                }
+            }
+        """
+        result = make_graphql_query(query, fieldsList)
+        log.debug(result.data)
+        self.assertEqual(len(result.errors), 0, "Query is successfull")
 
 
 class ScheduleFilterFormNewTestCase(TestCase):
@@ -135,14 +170,17 @@ class ScheduleFilterFormNewTestCase(TestCase):
         fullData = {
             'place': pla1.pk,
             'performance': per1.pk,
+            'mode': ScheduleFilterFormNew.FormModes.performanceFirst,
         }
 
         placeOnly = {
             'place': pla1.pk,
+            'mode': ScheduleFilterFormNew.FormModes.placeFirst,
         }
 
         performanceOnly = {
-            'performance': per1.pk
+            'performance': per1.pk,
+            'mode': ScheduleFilterFormNew.FormModes.fullOptions,
         }
 
         places_by_performance = Place.scheduled.by_performance(per1.pk)
@@ -155,10 +193,7 @@ class ScheduleFilterFormNewTestCase(TestCase):
         # test full filter:
         # both fields present
         # perfromance first --> places choices conform to places_by_performance
-        fullFilter.adjust_filter(
-            ScheduleFilterFormNew.FormModes.performanceFirst,
-            []
-        )
+        fullFilter.adjust_filter(['show'])
 
         self.assertEqual(len(fullFilter.fields), 2, "Both fields present")
         place_field = fullFilter.fields['place']
@@ -177,10 +212,7 @@ class ScheduleFilterFormNewTestCase(TestCase):
         # test place filter
         # only performance field present
         # performance choice conforms to performances by place
-        plaFilter.adjust_filter(
-            ScheduleFilterFormNew.FormModes.placeFirst,
-            ['place']
-        )
+        plaFilter.adjust_filter(['place', 'show'])
         self.assertEqual(len(plaFilter.fields), 1, "Only 1 field left")
         performance_field = plaFilter.fields['performance']
         self.assertListEqual(
@@ -191,10 +223,7 @@ class ScheduleFilterFormNewTestCase(TestCase):
 
         # test performance filter
         # both field present and full choices available
-        perFilter.adjust_filter(
-            ScheduleFilterFormNew.FormModes.fullOptions,
-            []
-        )
+        perFilter.adjust_filter(['show'])
         self.assertEqual(len(fullFilter.fields), 2, "Both fields present")
         performance_field = perFilter.fields['performance']
         place_field = perFilter.fields['place']
@@ -208,3 +237,29 @@ class ScheduleFilterFormNewTestCase(TestCase):
             [p.pk for p in Performance.scheduled.all()],
             "Performance choice is complete"
         )
+
+    def testGraphQLRepresentation(self):
+        per1 = Performance.objects.first()
+        pla1 = Place.objects.first()
+
+        fullData = {
+            'place': pla1.pk,
+            'performance': per1.pk,
+            'mode': ScheduleFilterFormNew.FormModes.performanceFirst
+        }
+
+        fieldsList = ScheduleFilterFormNew(
+            fullData).get_graphql_fields_representation()
+
+        query = """
+            {
+            fields {
+                id type value label helpText disabled required
+                customErrorMessages {valueMissing typeMismatch}
+                options {label value}
+                }
+            }
+            """
+        result = make_graphql_query(query, fieldsList)
+
+        self.assertEqual(len(result.errors), 0, "query is correct")

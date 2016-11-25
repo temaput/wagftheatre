@@ -52,7 +52,7 @@ class CustomErrorMessageObject(graphene.ObjectType):
 
 class SelectOptionObject(graphene.ObjectType):
     label = graphene.String()
-    value = graphene.Int()
+    value = graphene.String()
 
 
 class FormFieldObject(graphene.ObjectType):
@@ -89,7 +89,8 @@ class FormFieldObject(graphene.ObjectType):
             return CustomErrorMessageObject(**customErrorMessagesDict)
 
     def resolve_error(self, *args):
-        return " ".join(self.error)
+        if len(self.error):
+            return " ".join(self.error)
 
     def resolve_value(self, *args):
         return self.value()

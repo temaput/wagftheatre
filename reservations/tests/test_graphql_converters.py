@@ -4,7 +4,7 @@ from django import forms
 import graphene
 
 from reservations.forms import ReservationForm
-from reservations.models import Reservation
+from reservations.models import Reservation, Schedule
 from wag_ftheatre.utils.graphql_converters import (
     serialize_form_field, form_2_fieldslist
 )
@@ -82,7 +82,8 @@ class FormFieldListTest(TestCase):
         self.maxDiff = None
         reservationFormSample = MockData.initialDataSample['ReservationForm']
         fullFieldsSample = reservationFormSample['fields']
-        initial = {'show': '1', 'email': 'tt@mail.ru'}
+        show = Schedule.available.first()
+        initial = {'show': show, 'email': 'tt@mail.ru'}
         error_messages = {'valueMissing': 'vms', 'typeMismatch': 'tms'}
         options = ((1, 'one'), (2, 'two'))
 
