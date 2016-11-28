@@ -20,30 +20,6 @@ def graphene_input_object_from_model_form(cls_name, model_form):
     return new_cls
 
 
-def abstract_from_form(form_cls):
-    """"
-    not used yet
-    """
-    import types
-    import graphene
-    from graphene_django.form_converter import convert_form_field
-    cls_name = "%sObjectAbstract" % form_cls.__name__
-    form_instance = form_cls()
-
-    cls_dict = {
-        fname: convert_form_field(form_instance.fields[fname])
-        for fname in form_instance.fields
-    }
-
-    new_cls = types.new_class(
-        cls_name, (graphene.AbstractType,), {},
-        lambda ns: ns.update(cls_dict)
-    )
-    import sys
-    new_cls.__module__ = sys._getframe(1).f_globals['__name__']
-    return new_cls
-
-
 class CustomErrorMessageObject(graphene.ObjectType):
     valueMissing = graphene.String()
     typeMismatch = graphene.String()
@@ -147,3 +123,33 @@ def serialize_form_field(bfield):
 def form_2_fieldslist(form_instance, field_object_cls=FormFieldObject):
     return [field_object_cls(**serialize_form_field(f))
             for f in form_instance]
+
+
+def form_2_fieldsdict(form_instance, field_object_cls=FormFieldObject):
+    return {f.name: field_object_cls(**serialize_form_field(f))
+            for f in form_instance}
+
+
+def object_type_from_form(form_instance, field_object_cls=FormFieldObject):
+    """"
+    used in new namedfields schema
+    translates form form_instance to
+    class [FormName]Object(graphene.ObjectType):
+        field_name1 = FormFieldObject(id, type, value, error, options...)
+        field_name2 ...
+    """
+    import types
+    import graphene
+    cls_name = "%sObject" % form_instance.__class__.__name__
+
+    cls_dict = {f.name: graphene.Field(field_object_cls)
+                for f in form_instance}
+
+    new_cls = types.new_class(
+        cls_name, (graphene.ObjectType,),
+        {'metaclass': type(graphene.ObjectType)},
+        lambda ns: ns.update(cls_dict)
+    )
+    import sys
+    new_cls.__module__ = sys._getframe(1).f_globals['__name__']
+    return new_cls

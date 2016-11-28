@@ -3,14 +3,11 @@ from django.test import TestCase
 from django import forms
 import graphene
 
-from reservations.forms import ReservationForm
-from reservations.models import Reservation, Schedule
 from wag_ftheatre.utils.graphql_converters import (
-    serialize_form_field, form_2_fieldslist
+    form_2_fieldslist, form_2_fieldsdict, object_type_from_form
 )
 
-from .mock_data import MockData
-
+from wag_ftheatre.utils.graphql_converters import FormFieldObject
 
 import logging
 log = logging.getLogger(__name__)
@@ -18,105 +15,62 @@ log = logging.getLogger(__name__)
 # Create your tests here.
 
 
+class MockData:
+    showChoices = (('1', 'one'), ('2', 'two'))
+    showErrorMessages = {'valueMissing': 'vms', 'typeMismatch': 'tms'}
+    fieldsSample = (
+        {
+            'id': 'show',
+            'type': 'hidden',
+            'value': "",
+            'label': "Показ",
+            'options': [
+                OrderedDict([('label', label), ('value', value)])
+                for value, label in showChoices
+            ],
+            'helpText': '',
+            'disabled': False,
+            'required': True,
+            'customErrorMessages': showErrorMessages.copy(),
+        },
+        {
+            'id': 'email',
+            'label': "E-mail",
+            'type': "email",
+            'required': True,
+            'helpText': '',
+            'disabled': False,
+            'value': "",
+            'customErrorMessages': None,
+            'options': None,
+        },
+    )
+
+    showField, emailField = fieldsSample
+
+
+class RF(forms.Form):
+    show = forms.ChoiceField(
+        choices=MockData.showChoices,
+        widget=forms.HiddenInput,
+        label=MockData.showField['label'],
+        initial=MockData.showField['value'],
+        error_messages=MockData.showErrorMessages
+    )
+
+    email = forms.EmailField(
+        label=MockData.emailField['label'],
+        initial=MockData.emailField['value']
+    )
+
+
 class FormFieldListTest(TestCase):
 
-    def test_serializer(self):
-        fieldsSample = [
-                {
-                    'id': 'show',
-                    'type': 'hidden',
-                    'required': True,
-                    'disabled': False,
-                    'error': [],
-                    'help_text': '',
-                    'label': 'Показ',
-                },
-                {
-                    'id': 'email',
-                    'label': "E-mail",
-                    'type': "email",
-                    'required': True,
-                    'disabled': False,
-                    'error': [],
-                    'help_text': '',
-                },
-                {
-                    'id': 'first_name',
-                    'label': "Имя",
-                    'disabled': False,
-                    'error': [],
-                    'help_text': '',
-                },
-                {
-                    'id': 'last_name',
-                    'label': "Фамилия",
-                    'disabled': False,
-                    'error': [],
-                    'help_text': '',
-                },
-        ]
-        reservationFormSample = MockData.initialDataSample['ReservationForm']
-        fullFieldsSample = reservationFormSample['fields']
-
-        RF = forms.modelform_factory(
-            Reservation, form=ReservationForm,
-            widgets={'show': forms.HiddenInput},
-        )
-        reservationFormInstance = RF(auto_id=True)
-        fieldsList = [serialize_form_field(f) for f in reservationFormInstance]
-        self.assertEqual(len(fieldsList), len(fullFieldsSample),
-                         "Field list have length is OK")
-
-        for i, field in enumerate(fieldsSample):
-            for attr in field:
-                checkField = fieldsList[i]
-                self.assertTrue(attr in checkField,
-                                "field parameter present")
-                self.assertEqual(checkField[attr], field[attr],
-                                 "field parameter is OK")
-
-    def test_converter(self):
-
-        from wag_ftheatre.utils.graphql_converters import FormFieldObject
+    def test_list_converter(self):
 
         self.maxDiff = None
-        reservationFormSample = MockData.initialDataSample['ReservationForm']
-        fullFieldsSample = reservationFormSample['fields']
-        show = Schedule.available.first()
-        initial = {'show': show, 'email': 'tt@mail.ru'}
-        error_messages = {'valueMissing': 'vms', 'typeMismatch': 'tms'}
-        options = (('1', 'one'), ('2', 'two'))
-
-        RF = forms.modelform_factory(
-            Reservation, form=ReservationForm,
-            widgets={'show': forms.HiddenInput},
-        )
-
-        rf = RF(initial=initial)
-        show = rf.fields['show']
-        email = rf.fields['email']
-        show.choices = options
-        show.error_messages = error_messages
-
-        showSample = fullFieldsSample[0]
-        emailSample = fullFieldsSample[1]
-        emailSample['value'] = initial['email']
-        showSample['value'] = initial['show']
-        showSample['options'] = [
-            OrderedDict([('label', label), ('value', value)])
-            for value, label in options
-        ]
-
+        rf = RF()
         fieldsList = form_2_fieldslist(rf)
-
-        self.assertEqual(len(fieldsList), len(fullFieldsSample),
-                         "Field list have length is OK")
-
-        class Query(graphene.ObjectType):
-            fields = graphene.List(FormFieldObject)
-
-            def resolve_fields(self, *args):
-                return fieldsList
 
         query = """
             {
@@ -127,19 +81,61 @@ class FormFieldListTest(TestCase):
                 }
             }
             """
+
+        class Query(graphene.ObjectType):
+            fields = graphene.List(FormFieldObject)
+
+            def resolve_fields(self, *args):
+                return fieldsList
+
         schema = graphene.Schema(query=Query)
         result = schema.execute(query)
-
         if len(result.errors):
             log.error(result.errors)
 
         self.assertEqual(len(result.errors), 0, "query is correct")
-        show = dict(result.data['fields'][0])
-        email = dict(result.data['fields'][1])
-        showErrorMessages = dict(show['customErrorMessages'])
-        show['customErrorMessages'] = None
-        self.assertDictEqual(show, showSample, "Show field OK")
-        self.assertDictEqual(email, emailSample, "Email field OK")
-        self.assertDictEqual(
-            error_messages, showErrorMessages, "Errors dict OK"
-        )
+        result_show = dict(result.data['fields'][0])
+        result_email = dict(result.data['fields'][1])
+        self.assertDictEqual(result_show, MockData.showField)
+        self.assertDictEqual(result_email, MockData.emailField)
+
+    def test_object_converter(self):
+        self.maxDiff = None
+        rf = RF()
+        FormObjectType = object_type_from_form(rf)
+
+        query = """
+            {
+                form {
+                    email {
+                        ...field
+                    }
+                    show {
+                        ...field
+                    }
+                }
+            }
+
+            fragment field on FormFieldObject {
+                id type value label helpText disabled required
+                customErrorMessages {valueMissing typeMismatch}
+                options {label value}
+            }
+            """
+
+        class Query(graphene.ObjectType):
+            form = graphene.Field(FormObjectType)
+
+            def resolve_form(self, *args):
+                return FormObjectType(**form_2_fieldsdict(rf))
+
+        schema = graphene.Schema(query=Query)
+        result = schema.execute(query)
+        if len(result.errors):
+            log.error(result.errors)
+
+        self.assertEqual(len(result.errors), 0, "query is correct")
+        result_show = dict(result.data['form']['show'])
+        result_email = dict(result.data['form']['email'])
+        self.assertDictEqual(result_show, MockData.showField)
+        self.assertDictEqual(result_email, MockData.emailField)

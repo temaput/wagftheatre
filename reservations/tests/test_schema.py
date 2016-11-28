@@ -41,29 +41,6 @@ class ScheduleSchemaTestCase(TestCase):
                 showtime=tz.localtime(tz.now()) + tz.timedelta(i)
             )
 
-    def testReservationForm(self):
-        query = """
-        query ReservationForm(
-            $showId: String, $performanceURL: String, $placeURL:String
-            ) {
-            fixedShowReservation:reservationForm(show: $showId) { ...fields
-            }
-            defaultReservation:reservationForm {
-                ...fields
-            }
-        fragment fields on FormInterface {
-            fields {
-                id value type required label error
-                customErrorMessages {
-                    valueMissing typeMismatch patternMismatch
-                }
-            }
-        }
-        }
-        """
-
-        # reservationForm = result.data['fixedShowReservationForm']
-
     def testScheduleFilter(self):
         query = """
         query ScheduleFilter(
@@ -73,27 +50,31 @@ class ScheduleSchemaTestCase(TestCase):
                 mode:"performanceFirst",
                 performance: $performanceId
             ) {
-                ...fields
+                performance { ...field },
+                place { ...field },
+                show { ...field },
             }
             fixedPlace:scheduleFilter(
                 mode:"placeFirst",
                 performance: $placeId
             ) {
-                ...fields
+                performance { ...field },
+                place { ...field },
+                show { ...field },
             }
             default:scheduleFilter {
-                ...fields
+                performance { ...field },
+                place { ...field },
+                show { ...field },
             }
 
         }
-        fragment fields on FormInterface {
-            fields {
+        fragment field on FormFieldObject {
                 id value type required label error
                 customErrorMessages {
                     valueMissing typeMismatch patternMismatch
                 }
                 options {label value}
-            }
         }
         """
         per1 = Performance.objects.first()

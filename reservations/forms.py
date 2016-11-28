@@ -2,7 +2,9 @@ from django import forms
 from django.template import Template, Context
 from reservations.models import Reservation, Schedule
 from theatre.models import Performance, Place
-from wag_ftheatre.utils.graphql_converters import form_2_fieldslist
+from wag_ftheatre.utils.graphql_converters import (
+    form_2_fieldslist, form_2_fieldsdict, object_type_from_form
+)
 
 
 class ScheduleFilterForm(forms.Form):
@@ -149,6 +151,10 @@ class ScheduleFilterFormNew(forms.Form):
         self.adjust_filter(exclude)
         return form_2_fieldslist(self)
 
+    def get_graphql_formobject(self, exclude=[]):
+        self.adjust_filter(exclude)
+        return ScheduleFilterFormObject(**form_2_fieldsdict(self))
+
 
 class ReservationForm(forms.ModelForm):
     class Meta:
@@ -167,3 +173,13 @@ class ReservationForm(forms.ModelForm):
         for fname in exclude:
             self.fields.pop(fname, None)
         return form_2_fieldslist(self)
+
+    def get_graphql_formobject(self, exclude=[]):
+        for fname in exclude:
+            self.fields.pop(fname, None)
+        return ReservationFormObject(**form_2_fieldsdict(self))
+
+
+ScheduleFilterFormObject = object_type_from_form(ScheduleFilterFormNew())
+
+ReservationFormObject = object_type_from_form(ReservationForm())
