@@ -99,7 +99,6 @@ class ReservationFormTestCase(TestCase):
             }
         """
         result = make_graphql_query(query, fieldsList)
-        log.debug(result.data)
         self.assertEqual(len(result.errors), 0, "Query is successfull")
 
 

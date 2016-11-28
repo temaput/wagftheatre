@@ -1,9 +1,7 @@
-import json
 from django.test import TestCase
 from theatre.models import Performance, Place
 from reservations.models import Schedule
 from wag_ftheatre.schema import schema
-from .mock_data import MockData
 
 from django.utils import timezone as tz
 
@@ -55,7 +53,7 @@ class ScheduleSchemaTestCase(TestCase):
             }
         fragment fields on FormInterface {
             fields {
-                id value type hidden required label options error
+                id value type required label error
                 customErrorMessages {
                     valueMissing typeMismatch patternMismatch
                 }
@@ -69,12 +67,18 @@ class ScheduleSchemaTestCase(TestCase):
     def testScheduleFilter(self):
         query = """
         query ScheduleFilter(
-            $showId: String, $performanceURL: String, $placeURL:String
+            $performanceId: String, $placeId: String
             ) {
-            fixedPerformance:scheduleFilter(url: $performanceURL) {
+            fixedPerformance:scheduleFilter(
+                mode:"performanceFirst",
+                performance: $performanceId
+            ) {
                 ...fields
             }
-            fixedPlace:scheduleFilter(url: $placeURL) {
+            fixedPlace:scheduleFilter(
+                mode:"placeFirst",
+                performance: $placeId
+            ) {
                 ...fields
             }
             default:scheduleFilter {
@@ -84,7 +88,7 @@ class ScheduleSchemaTestCase(TestCase):
         }
         fragment fields on FormInterface {
             fields {
-                id value type hidden required label options error
+                id value type required label error
                 customErrorMessages {
                     valueMissing typeMismatch patternMismatch
                 }
@@ -94,11 +98,9 @@ class ScheduleSchemaTestCase(TestCase):
         """
         per1 = Performance.objects.first()
         pla1 = Place.objects.first()
-        show1 = Schedule.available.first()
         variable_values = {
-            'performanceURL': getPageURL(per1),
-            'placeURL': getPageURL(pla1),
-            'show': show1.pk,
+            'performanceId': per1,
+            'placeId': pla1,
         }
         result = schema.execute(query, variable_values=variable_values)
         if len(result.errors):
@@ -112,20 +114,6 @@ class ScheduleSchemaTestCase(TestCase):
         self.assertIsNotNone(
             result.data,
             "Data is not empty"
-        )
-
-        performanceFixed = result.data['performanceFixed']
-        reservationForm = result.data['reservationForm']
-        log.debug(performanceFixed)
-        self.assertDictEqual(
-            performanceFixed,
-            MockData.initialDataSample['ScheduleFilter'],
-            "Initial data for ScheduleFilter is good"
-        )
-        self.assertDictEqual(
-            reservationForm,
-            MockData.initialDataSample['ReservationForm'],
-            "Initial data for ReservationForm is good"
         )
 
     def testQueryScheduledPerformances(self):

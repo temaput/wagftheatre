@@ -85,7 +85,7 @@ class FormFieldListTest(TestCase):
         show = Schedule.available.first()
         initial = {'show': show, 'email': 'tt@mail.ru'}
         error_messages = {'valueMissing': 'vms', 'typeMismatch': 'tms'}
-        options = ((1, 'one'), (2, 'two'))
+        options = (('1', 'one'), ('2', 'two'))
 
         RF = forms.modelform_factory(
             Reservation, form=ReservationForm,
