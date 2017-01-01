@@ -56,7 +56,7 @@ class ScheduleSchemaTestCase(TestCase):
             }
             fixedPlace:scheduleFilter(
                 mode:"placeFirst",
-                performance: $placeId
+                place: $placeId
             ) {
                 performance { ...field },
                 place { ...field },
