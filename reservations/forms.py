@@ -147,6 +147,12 @@ class ScheduleFilterFormNew(forms.Form):
 
         self.fields.pop('mode', None)
 
+        # make the fields appear required for client-side validation
+        for fname in ('show', 'performance', 'place'):
+            f = self.fields.get(fname, None)
+            if f is not None:
+                f.required = True
+
     def get_graphql_fields_representation(self, exclude=[]):
         self.adjust_filter(exclude)
         return form_2_fieldslist(self)
